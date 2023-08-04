@@ -1,6 +1,6 @@
 const { get } = require('./router');
 const {userRegister,getUserByEmail,getProducts} = require('./service');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
     userRegister: (req, res) => {
