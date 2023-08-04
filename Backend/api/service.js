@@ -17,14 +17,19 @@ userRegister: (data, callBack) => {
         }
     );
 },
-getUser: callBack => {
+getUserByEmail: (email,callBack) => {
     pool.query(
-        `select userId,userName,email from userTable`,
-        [],
+        `select 
+        userId,userName,email 
+        from userTable
+        where
+        email = ?`,
+        [email],
         (error, results, fields) => {
             if(error){
                 return callBack(error);
             }
+            console.log(results);
             return callBack(null, results);
         }
     );

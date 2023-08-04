@@ -1,4 +1,4 @@
-const {userRegister,getUser} = require('./service');
+const {userRegister,getUserByEmail} = require('./service');
 
 module.exports = {
     userRegister: (req, res) => {
@@ -17,8 +17,9 @@ module.exports = {
             });
         });
     },
-    getUser: (req, res) => {
-        getUser((err, results) => {
+    getUserByEmail: (req, res) => {
+        const {email} = req.body;
+        getUserByEmail(email,(err, results) => {
             if(err){
                 console.log(err);
                 return;
