@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Product from "../../components/Product";
 import Footer from "../../components/Footer";
+import Feature from "../../components/Feature";
 import Hero from "../../modules/Hero";
 const Home = () => {
   //functions
@@ -19,6 +20,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      <Feature />
       <h2 className="text-6xl font-bold text-center">Product</h2>
 
       {products.length > 0 ? (
@@ -26,6 +28,7 @@ const Home = () => {
       ) : (
         <div>loading...</div>
       )}
+
       <Product />
       <Footer />
     </div>
