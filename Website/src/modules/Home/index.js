@@ -3,15 +3,35 @@ import Product from "../../components/Product";
 import Footer from "../../components/Footer";
 import Feature from "../../components/Feature";
 import Hero from "../../modules/Hero";
+import axios from "axios";
 const Home = () => {
   //functions
   const [products, setProducts] = useState([]);
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     const response = await fetch(
+  //       "https://lapshopapp-f26f1576abb1.herokuapp.com/api/products"
+  //     );
+  //     const data = await response.json();
+  //     const products = data.data;
+  //     console.log(data);
+  //     setProducts(products);
+  //   };
+  //   fetchProducts();
+  // }, []);
+
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch("https://fakestoreapi.com/products");
-      const data = await response.json();
-      console.log(data);
-      setProducts(data);
+      try {
+        const response = await axios.get(
+          "https://lapshopapp-f26f1576abb1.herokuapp.com/api/products"
+        );
+        const products = response.data.data;
+        console.log(response.data);
+        setProducts(products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
     fetchProducts();
   }, []);
