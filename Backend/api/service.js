@@ -32,5 +32,19 @@ getUserByEmail: (email,callBack) => {
             return callBack(null, results);
         }
     );
-}
+},
+getProducts: callBack => {
+    pool.query(
+        `select 
+        *
+        from product_table`,
+        
+        (error, results, fields) => {
+            if(error){
+                return callBack(error);
+            }
+            return callBack(null, results);
+        }
+    );
+},
 };
