@@ -13,7 +13,8 @@ class _MyLoginState extends State<MyLogin> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('images/login.png'), fit: BoxFit.cover),
+            image: AssetImage('mobile_app/shopapp/images/login.png'),
+            fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
