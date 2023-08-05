@@ -1,9 +1,10 @@
-
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const ProductSection = () => {
+  const { product_id } = useParams();
+  console.log(product_id);
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -11,13 +12,13 @@ const ProductSection = () => {
     const fetchData = async () => {
       try {
         const response = await axios.post(
-          'https://lapshopapp-f26f1576abb1.herokuapp.com/api/products',
-          { id: '5' }
+          "https://lapshopapp-f26f1576abb1.herokuapp.com/api/products",
+          { id: product_id }
         );
         // Assuming the API response has "data" property containing product information
         setProduct(response.data.data[0]);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -67,9 +68,3 @@ const ProductSection = () => {
 };
 
 export default ProductSection;
-
-
-
-
-
-

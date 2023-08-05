@@ -16,7 +16,7 @@
 //       <Home /> */}
 //         </Routes>
 //       </BrowserRouter>
-     
+
 //     </div>
 //   );
 // }
@@ -25,7 +25,7 @@
 import React from "react";
 import Header from "./components/Header";
 import Home from "./modules/Home";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductCard from "./components/descriptionCard/descriptionCard";
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
         <Header />
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/product" element={<ProductCard />} />
+          <Route path="/product/:product_id" element={<ProductCard />} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -43,4 +43,3 @@ function App() {
 }
 
 export default App;
-

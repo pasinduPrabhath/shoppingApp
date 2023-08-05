@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 const Product = ({ products = [] }) => {
   return (
@@ -9,20 +8,21 @@ const Product = ({ products = [] }) => {
         <div class="flex flex-wrap -m-4">
           {products.map((products) => {
             console.log(products, "product");
-            const { id, title, price, description, category, image } = products;
+            const { product_id, title, price, description, category, image } =
+              products;
             return (
               <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
-                <Link 
-                to="/product"
-                // to={`/products/${id}`}
+                <Link
+                  //to="/product/${product_id}"
+                  to={`/product/${product_id}`}
                 >
-                <a class="block relative h-48 rounded overflow-hidden">
-                  <img
-                    alt="ecommerce"
-                    class="object-cover object-center w-full h-full block"
-                    src={image}
-                  />
-                </a>
+                  <a class="block relative h-48 rounded overflow-hidden">
+                    <img
+                      alt="ecommerce"
+                      class="object-cover object-center w-full h-full block"
+                      src={image}
+                    />
+                  </a>
                 </Link>
                 <div class="mt-4">
                   <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
