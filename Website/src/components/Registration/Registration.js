@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import profile from "./images/a.png";
+import profile from "../../icon/laptop.png";
 import email from "./images/email.jpg";
 import pass from "./images/pass.png";
 import axios from "axios";
@@ -9,11 +9,30 @@ const Registration = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+     if (!isValidEmail(emailValue)) {
+      setError("Invalid email format");
+      return;
+    }
+
+    if (!isValidPassword(passwordValue)) {
+      setError(
+        "Password should be 10 characters long with at least one special character and one number"
+      );
+      return;
+    }
+
+    if (passwordValue !== confirmPasswordValue) {
+      setError("Passwords do not match");
+      return;
+    }
+
     try {
+      setError(null);
       const response = await axios.post(
         "https://lapshopapp-f26f1576abb1.herokuapp.com/api/register",
         {
@@ -28,6 +47,17 @@ const Registration = () => {
       console.error(error);
     }
   };
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const isValidPassword = (password) => {
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{10,}$/;
+    return passwordRegex.test(password);
+  };
+
   return (
     <div className="main">
       <div className="sub-main">
@@ -67,7 +97,10 @@ const Registration = () => {
               </div>
 
               <p className="link">
-                <a href="#">Forgot password ?</a> Or <a href="/login">Login</a>
+                Already have an Account?{" "}
+                <a href="/login">
+                  <u>Login</u>
+                </a>
               </p>
             </form>
           </div>
