@@ -1,7 +1,7 @@
 module.exports = {
     sendEmail: async (email, name, body) => {
       const serviceId = "service_4v9bumo";
-      const templateId = "template_8dc678o";
+      const templateId = "template_ecvqu3m";
       const userId = "I_jZpZ-48BZEzeLOK";
       const url = "https://api.emailjs.com/api/v1.0/email/send";
       const response = await fetch(url, {

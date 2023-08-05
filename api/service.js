@@ -21,7 +21,7 @@ module.exports = {
           return callBack(error);
         }
         try {
-          await sendEmail(data.email, data.userName, "Welcome to the store! \nYou have to verify your account by entering this OTP: " + otp);
+          await sendEmail(data.email, data.userName, "Welcome to the Lapzoid! \nYou have to verify your account by entering this OTP: " + otp);
           return callBack(null, results);
         } catch (error) {
           console.error(error);
