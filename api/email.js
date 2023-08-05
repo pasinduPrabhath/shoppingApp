@@ -8,7 +8,7 @@ module.exports = {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Origin: "http://localhost"
+          Origin: "https://lapshopapp-f26f1576abb1.herokuapp.com/"
         },
         body: JSON.stringify({
           service_id: serviceId,
