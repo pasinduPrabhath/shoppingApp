@@ -15,6 +15,20 @@ export default function Login() {
                 <input type="password" id="password" placeholder='Enter the password'/>
               </div>
               <br />
+              <div>
+                <a>Forgot Password?</a>
+              </div>
+              <br/>
+              <div>
+                <button type="button" className='customerbutton'>
+                  Login
+                </button>
+              </div>
+              <div>
+              <p>Do not have an account? <a>Sign Up</a> here</p><br/>
+              </div>
+              <br />
+           
             </form>
         </div>
     </div>

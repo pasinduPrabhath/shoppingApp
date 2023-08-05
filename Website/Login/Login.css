@@ -38,3 +38,17 @@
   .log input[type="password"]::placeholder {
     color: #888;
   }
+
+  .customerbutton{
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: rgb(240, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.customerbutton:hover {
+  background-color: rgb(168, 0, 0); 
+}

@@ -1,7 +1,16 @@
-import React from "react";
+//import React from "react";
 import icon from "../../icon/laptopset.png";
+import React, { useRef } from "react";
 
-const Hero = () => {
+const Hero = ({ onClickShopNow }) => {
+  const heroRef = useRef(null);
+
+  const handleShopNowClick = () => {
+    if (onClickShopNow) {
+      onClickShopNow();
+    }
+  };
+
   return (
     <section class="text-gray-600 body-font mt-20 ">
       <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
@@ -18,7 +27,10 @@ const Hero = () => {
             chargers and cases, we've got you covered.
           </p>
           <div class="flex justify-center">
-            <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-700 rounded text-lg">
+            <button
+              class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-700 rounded text-lg"
+              onClick={handleShopNowClick}
+            >
               Shop Now
             </button>
           </div>
