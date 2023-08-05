@@ -1,63 +1,70 @@
+import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
+const ProductSection = () => {
+  const { product_id } = useParams();
+  console.log(product_id);
+  const [product, setProduct] = useState(null);
 
-// export default App;
-// import React from 'react';// import "./descriptionCard.css";
-// import "./descriptionCard.css";
+  useEffect(() => {
+    // Function to fetch data from the API
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          "https://lapshopapp-f26f1576abb1.herokuapp.com/api/products",
+          { id: product_id }
+        );
+        // Assuming the API response has "data" property containing product information
+        setProduct(response.data.data[0]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-// const ProductCard = () => {
-//   return (
-//     <div className="wrapper">
-//       <div className="product-img">
-//         //image
-//         <img src="http://bit.ly/2tMBBTd" height="420" width="327" alt="Harvest Vase" />
-//       </div>
-//       <div className="product-info">
-//         <div className="product-text">
-//           //title
-//           <h1>Harvest Vase</h1>
-//           //category
-//           <h2>by studio and friends</h2>
-//           //description
-//           <p>Harvest Vases are a reinterpretation<br /> of peeled fruits and vegetables as<br /> functional objects. The surfaces<br /> appear to be sliced and pulled aside,<br /> allowing room for growth. </p>
-//         </div>
-//         <div className="product-price-btn">
-//           //price
-//           <p><span>78</span>$</p>
-//           <button type="button">buy now</button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+    fetchData();
+  }, []);
 
-// export default ProductCard;
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
-import React from 'react';
-import './descriptionCard.css';
-
-const ProductCard = ({ title, description, price, image }) => {
   return (
-    <div className="wrapper">
-      <div className="product-img">
-        <img src={image} height="420" width="327" alt="Harvest Vase" />
-      </div>
-      <div className="product-info">
-        <div className="product-text">
-          <h1>{title}</h1>
-          <h2>by studio and friends</h2>
-          <p>{description}</p>
+    <section className="text-gray-600 body-font overflow-hidden">
+      <div className="container px-5 py-24 mx-auto">
+        <div className="lg:w-4/5 mx-auto flex flex-wrap">
+          <img
+            alt={product.title}
+            className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+            src={product.image}
+          />
+          <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+            <h2 className="text-sm title-font text-gray-500 tracking-widest">
+              {product.category}
+            </h2>
+            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+              {product.title}
+            </h1>
+            <p className="leading-relaxed">{product.description}</p>
+            <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+              {/* Color and Size elements go here */}
+            </div>
+            <div className="flex">
+              <span className="title-font font-medium text-2xl text-gray-900">
+                ${product.price}
+              </span>
+              <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                Button
+              </button>
+              <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                {/* SVG icon goes here */}
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="product-price-btn">
-          <p><span>{price}</span>$</p>
-          <button type="button">buy now</button>
-        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default ProductCard;
-
-
-
-
+export default ProductSection;

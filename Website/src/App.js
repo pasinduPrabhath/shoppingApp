@@ -16,7 +16,7 @@
 //       <Home /> */}
 //         </Routes>
 //       </BrowserRouter>
-     
+
 //     </div>
 //   );
 // }
@@ -25,9 +25,13 @@
 import React from "react";
 import Header from "./components/Header";
 import Home from "./modules/Home";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductCard from "./components/descriptionCard/descriptionCard";
+
 import Cart from './components/cart/cart';
+
+
+import Login from "./components/Login/Login";
 
 
 function App() {
@@ -37,8 +41,12 @@ function App() {
         <Header />
         <Routes>
           <Route index element={<Home />} />
+
+
           <Route path="/product" element={<ProductCard />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/product/:product_id" element={<ProductCard />} />
+          <Route path="/login/" element={<Login />} />
+
         </Routes>
       </BrowserRouter>
     </div>
@@ -46,4 +54,3 @@ function App() {
 }
 
 export default App;
-
