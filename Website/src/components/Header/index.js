@@ -25,7 +25,7 @@ const Header = () => {
     const fetchSuggestions = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:3001/api/search/searchBySalonName/${searchTerm}`
+          `https://lapshopapp-f26f1576abb1.herokuapp.com/api/searchByTitle/${searchTerm}`
         );
         const data = response.data;
         console.log(data);
