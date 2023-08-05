@@ -63,7 +63,10 @@ const Header = () => {
           <Link to="/description-card" className="mr-5 hover:text-gray-900">
             About Us
           </Link>
-          <Link to="/third-link" className="mr-5 hover:text-gray-900">
+          <Link
+            to="/registration/EmailVerify"
+            className="mr-5 hover:text-gray-900"
+          >
             Contact Us
           </Link>
         </nav>

@@ -32,6 +32,7 @@ import Cart from "./components/cart/cart";
 
 import Login from "./components/Login/Login";
 import Registration from "./components/Registration/Registration";
+import EmailVerify from "./components/EmailVerifyPage/EmailOTPVerifyPage";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/product/:product_id" element={<ProductCard />} />
           <Route path="/login/" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
+          <Route path="/registration/EmailVerify" element={<EmailVerify />} />
         </Routes>
       </BrowserRouter>
     </div>
