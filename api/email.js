@@ -21,11 +21,11 @@ module.exports = {
           }
         })
       });
-      const data = await response.json();
-      if (data.includes("OK")) {
-        return { status: "success" };
-      } else {
-        return { status: "error", message: data };
-      }
+      const data = await response.text();
+    if (data.includes("OK")) {
+      return { status: "success" };
+    } else {
+      return { status: "error", message: data };
+    }
     }
   };
