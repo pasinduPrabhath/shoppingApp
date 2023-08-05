@@ -1,8 +1,11 @@
 import React, { useState, useRef } from "react";
+import axios from "axios";
 
 const EmailVerify = () => {
   const [otp, setOtp] = useState("");
   const inputRefs = useRef([]);
+
+  const email = "isuru@gmail.com";
 
   const handleOtpChange = (e, index) => {
     const newOtp = otp.split("");
@@ -22,6 +25,24 @@ const EmailVerify = () => {
 
   const handleVerify = () => {
     console.log(otp);
+    const data = {
+      otp: otp,
+      email: "pasinduprabhath@gmail.com",
+    };
+
+    axios
+      .post(
+        "https://lapshopapp-f26f1576abb1.herokuapp.com/api/emailVerification",
+        data
+      )
+      .then((response) => {
+        if (response.data.success == 1) {
+        }
+        console.log(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Verification failed:", error);
+      });
   };
 
   return (
