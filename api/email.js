@@ -22,7 +22,7 @@ module.exports = {
         })
       });
       const data = await response.json();
-      if (data === "OK") {
+      if (data.includes("OK")) {
         return { status: "success" };
       } else {
         return { status: "error", message: data };
