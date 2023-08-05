@@ -27,6 +27,8 @@ import Header from "./components/Header";
 import Home from "./modules/Home";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ProductCard from "./components/descriptionCard/descriptionCard";
+import Cart from './components/cart/cart';
+
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/product" element={<ProductCard />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </div>
