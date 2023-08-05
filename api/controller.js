@@ -4,6 +4,7 @@ const {
   getUserByEmail,
   getProducts,
   searchByKeyword,
+  emailVerification,
 } = require("./service");
 const bcrypt = require("bcryptjs");
 
@@ -98,6 +99,30 @@ module.exports = {
       });
     });
   },
+    emailVerification: (req, res) => {
+    const { email, otp } = req.body;
+    emailVerification(email, otp, (err, results) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({
+                success: 0,
+                message: "Database connection error",
+            });
+        }
+        if (results.length == 0) {
+            return res.json({
+                success: 0,
+                data: "Invalid email or otp",
+            });
+        }
+        return res.json({
+            success: 1,
+            data: results,
+            message: "Email verified successfully",
+        });
+    });
+},
+
   //-------------------------Search-------------------------
 
   searchByKeyword: (req, res) => {

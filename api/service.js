@@ -58,6 +58,23 @@ module.exports = {
       return callBack(null, results);
     });
   },
+  emailVerification: (email, otp, callBack) => {
+    pool.query(
+        `select
+        *
+        from userTable
+        where
+        email = ? and otp = ?`,
+        [email, otp],
+        (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            return callBack(null, results);
+        }
+    );
+},
+
   //----------------------------------
 
   searchByKeyword: (keyword, callback) => {
