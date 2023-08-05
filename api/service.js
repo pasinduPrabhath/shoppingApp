@@ -33,18 +33,16 @@ getUserByEmail: (email,callBack) => {
         }
     );
 },
-getProducts: callBack => {
-    pool.query(
-        `select 
-        *
-        from product_table`,
-        
-        (error, results, fields) => {
-            if(error){
-                return callBack(error);
-            }
-            return callBack(null, results);
+getProducts: (id, callBack) => {
+    let query = `SELECT * FROM product_table`;
+    if (id) {
+        query += ` WHERE id = ${id}`;
+    }
+    pool.query(query, (error, results, fields) => {
+        if (error) {
+            return callBack(error);
         }
-    );
-},
+        return callBack(null, results);
+    });
+}
 };

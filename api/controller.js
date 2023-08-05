@@ -68,12 +68,19 @@ module.exports = {
         });
     },
     getProducts : (req, res) => {
-        getProducts((err, results) => {
+        const {id} = req.params;
+        getProducts(id,(err, results) => {
             if(err){
                 console.log(err);
                 return res.status(500).json({
                     success: 0,
                     message: "Database connection error"
+                });
+            }
+            if (id && results.length === 0) {
+                return res.status(404).json({
+                    success: 0,
+                    message: "Product not found"
                 });
             }
             return res.status(200).json({
