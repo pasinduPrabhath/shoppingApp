@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Product from "../../components/Product";
 import Footer from "../../components/Footer";
 import Feature from "../../components/Feature";
+//import Header from "../../components/Header";
+
 // import DescriptionCard from "../../components/descriptionCard/descriptionCard";
 import Hero from "../../modules/Hero";
 import axios from "axios";
@@ -40,6 +42,7 @@ const Home = () => {
   // load ui
   return (
     <div>
+      {/* <Header /> */}
       <Hero />
       <Feature />
       <h2 className="text-6xl font-bold text-center">Product</h2>

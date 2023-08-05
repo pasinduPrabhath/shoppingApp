@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+
 
 const Product = ({ products = [] }) => {
   return (
@@ -10,6 +12,10 @@ const Product = ({ products = [] }) => {
             const { id, title, price, description, category, image } = products;
             return (
               <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <Link 
+                to="/product"
+                // to={`/products/${id}`}
+                >
                 <a class="block relative h-48 rounded overflow-hidden">
                   <img
                     alt="ecommerce"
@@ -17,6 +23,7 @@ const Product = ({ products = [] }) => {
                     src={image}
                   />
                 </a>
+                </Link>
                 <div class="mt-4">
                   <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
                     Computer and Accessories

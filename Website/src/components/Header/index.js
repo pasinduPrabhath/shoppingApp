@@ -30,6 +30,7 @@
 import React from "react";
 import icon from "../../icon/laptop.png";
 import cart from "../../icon/cart.png";
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -42,7 +43,7 @@ const Header = () => {
 
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
           <a className="mr-5 hover:text-gray-900">Product</a>
-          <a className="mr-5 hover:text-gray-900">Second Link</a>
+          <Link to="/product" activeClassName="text-red-500" className="mr-5 hover:text-gray-900">DescriptionCard</Link>
           <a className="mr-5 hover:text-gray-900">Third Link</a>
           <a className="mr-5 hover:text-gray-900">Fourth Link</a>
         </nav>
