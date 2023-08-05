@@ -99,6 +99,9 @@ const Registration = () => {
               <p className="link">
                 <a href="#">Forgot password ?</a> Or <a href="/login">Login</a>
               </p>
+              <div className="error-message">
+                {error && <p>{error}</p>}
+              </div>
             </form>
           </div>
         </div>
