@@ -41,7 +41,7 @@ const Home = () => {
     <div>
       <Hero />
       <Feature />
-      <h2 className="text-6xl font-bold text-center">Product</h2>
+      <h2 className="text-6xl font-bold text-center">Productt</h2>
 
       {products.length > 0 ? (
         <Product products={products} />
