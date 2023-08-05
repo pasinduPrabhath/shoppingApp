@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+
 import Product from "../../components/Product";
 import Footer from "../../components/Footer";
 import Feature from "../../components/Feature";
@@ -8,6 +9,8 @@ import axios from "axios";
 const Home = () => {
   //functions
   const [products, setProducts] = useState([]);
+
+  const productRef = useRef(null);
   // useEffect(() => {
   //   const fetchProducts = async () => {
   //     const response = await fetch(
@@ -37,15 +40,24 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+  const handleShopNowClick = () => {
+    productRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   // load ui
   return (
     <div>
-      <Hero />
+      <Hero onClickShopNow={handleShopNowClick} />
       <Feature />
       <h2 className="text-6xl font-bold text-center">Product</h2>
 
       {products.length > 0 ? (
-        <Product products={products} />
+        <div ref={productRef}>
+          <Product products={products} />
+        </div>
       ) : (
         <div>loading...</div>
       )}
