@@ -17,7 +17,12 @@ export default function Login() {
       );
 
       if (response.status === 200) {
+        if (response.data.success === 1) {
+        } else {
+          setError(response.data.data);
+        }
         console.log(response.data);
+        // setError(response.data.message.data);
       } else {
         setError("Invalid username or password");
       }
@@ -31,8 +36,9 @@ export default function Login() {
     <div className="login-container">
       <div className="log">
         <h1 className="titile">Login</h1>
+
         <div className="error-message">
-          {error && <p className="error-text">{error}</p>}
+          {error && <p className="text-red-500">{error}</p>}
         </div>
         <form onSubmit={handleSubmit}>
           <div>
