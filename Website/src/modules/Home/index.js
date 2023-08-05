@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Product from "../../components/Product";
 import Footer from "../../components/Footer";
 import Feature from "../../components/Feature";
+// import DescriptionCard from "../../components/descriptionCard/descriptionCard";
 import Hero from "../../modules/Hero";
 import axios from "axios";
 const Home = () => {
@@ -50,6 +51,7 @@ const Home = () => {
       )}
 
       <Product />
+
       <Footer />
     </div>
   );
