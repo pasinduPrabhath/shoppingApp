@@ -1,0 +1,40 @@
+.log{
+    text-align: center;
+    background-color: rgba(231, 231, 231, 0.7);
+    width: 50%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px; 
+  } 
+  
+  .background{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh; 
+  }
+  
+  .log input[type="text"],
+  .log input[type="password"] {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  .log input[type="text"]::placeholder,
+  .log input[type="password"]::placeholder {
+    color: #888;
+  }
