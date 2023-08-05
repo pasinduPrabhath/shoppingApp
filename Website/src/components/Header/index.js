@@ -82,14 +82,24 @@ const Header = () => {
             <ul className="absolute left-0 right-0 bg-white border border-gray-300 rounded mt-1 z-10">
               {suggestions.map((suggestion) => (
                 <li
-                  key={suggestion.id}
+                  key={suggestion.product_id}
                   className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                   onClick={() => {
+                    console.log(suggestion.product_id);
+
                     setSearchTerm(suggestion.text);
                     setSuggestions([]);
+                    window.location.reload();
                   }}
                 >
-                  {suggestion.salon_name}
+                  <Link
+                    //to="/product/${product_id}"
+                    to={`/product/${suggestion.product_id}`}
+                  >
+                    {" "}
+                    {suggestion.title}
+                  </Link>
+                  ;
                 </li>
               ))}
             </ul>
