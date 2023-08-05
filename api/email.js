@@ -22,6 +22,10 @@ module.exports = {
         })
       });
       const data = await response.json();
-      return data;
+      if (data === "OK") {
+        return { status: "success" };
+      } else {
+        return { status: "error", message: data };
+      }
     }
   };
