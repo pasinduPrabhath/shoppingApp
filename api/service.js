@@ -36,7 +36,7 @@ getUserByEmail: (email,callBack) => {
 getProducts: (id, callBack) => {
     let query = `SELECT * FROM product_table`;
     if (id) {
-        query += ` WHERE id = ${id}`;
+        query += ` WHERE product_id = ${id}`;
     }
     pool.query(query, (error, results, fields) => {
         if (error) {
