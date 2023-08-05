@@ -1,14 +1,21 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import Login from "../../components/Login/Login";
+import { useLocation } from "react-router-dom";
 
 const EmailVerify = () => {
   const [otp, setOtp] = useState("");
+  const [email, setEmail] = useState("");
   const inputRefs = useRef([]);
   const [isVerified, setIsVerified] = useState(false);
   const [otpError, setOtpError] = useState("");
+  const location = useLocation();
 
-  const email = "isuru@gmail.com";
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const emailParam = searchParams.get("email");
+    setEmail(emailParam);
+  }, []);
 
   const handleOtpChange = (e, index) => {
     const newOtp = otp.split("");
@@ -30,7 +37,7 @@ const EmailVerify = () => {
     console.log(otp);
     const data = {
       otp: otp,
-      email: "pasinduprabhath@gmail.com",
+      email: email,
     };
 
     axios
