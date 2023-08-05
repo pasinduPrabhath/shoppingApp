@@ -105,7 +105,7 @@ module.exports = {
 
   addToCart: (data, callBack) => {
     pool.query(
-      `insert into cart_table(product_id,user_id) values(?,?)`,
+      `insert into cart_table(productId,userId) values(?,?)`,
       [data.product_id, data.user_id],
       (error, results, fields) => {
         if (error) {
