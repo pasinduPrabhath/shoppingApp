@@ -68,7 +68,7 @@ module.exports = {
         });
     },
     getProducts : (req, res) => {
-        const {id} = req.params;
+        const {id} = req.body;
         getProducts(id,(err, results) => {
             if(err){
                 console.log(err);
