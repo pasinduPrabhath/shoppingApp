@@ -184,9 +184,9 @@ footer a {
     font-size: 12px;
 } */
 
-body {
+/* body {
     background-color: #fdf1ec;
-  }
+  } */
   
   .wrapper {
     height: 420px;
@@ -274,12 +274,12 @@ body {
     color: #474747;
   }
   
-  span {
+  /* span {
     display: inline-block;
     height: 50px;
     font-family: 'Suranna', serif;
     font-size: 34px;
-  }
+  } */
   
   .product-price-btn button {
     float: right;
