@@ -19,12 +19,12 @@ const Product = ({ products = [] }) => {
                 </a>
                 <div class="mt-4">
                   <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
-                    CATEGORY
+                    Computer and Accessories
                   </h3>
                   <h2 class="text-gray-900 title-font text-lg font-medium">
                     {title}
                   </h2>
-                  <p class="mt-1">$16.00</p>
+                  <p class="mt-1">Rs :{price}.00</p>
                 </div>
               </div>
             );
