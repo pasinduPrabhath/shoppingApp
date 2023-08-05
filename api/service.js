@@ -88,7 +88,7 @@ module.exports = {
     );
 },
 
-  //----------------------------------
+
 
   searchByKeyword: (keyword, callback) => {
     pool.query(
@@ -102,4 +102,17 @@ module.exports = {
       }
     );
   },
+
+  addToCart: (data, callBack) => {
+    pool.query(
+      `insert into cart_table(product_id,user_id) values(?,?)`,
+      [data.product_id, data.user_id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  }
 };

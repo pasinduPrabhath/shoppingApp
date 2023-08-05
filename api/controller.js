@@ -5,6 +5,7 @@ const {
   getProducts,
   searchByKeyword,
   emailVerification,
+  addToCart,
 } = require("./service");
 const bcrypt = require("bcryptjs");
 
@@ -131,8 +132,6 @@ module.exports = {
     });
 },
 
-  //-------------------------Search-------------------------
-
   searchByKeyword: (req, res) => {
     const keyword = req.params.keyword;
     searchByKeyword(keyword, (err, results) => {
@@ -146,4 +145,19 @@ module.exports = {
       });
     });
   },
+
+    addToCart: (req, res) => {
+    const data = req.body;
+    addToCart(data, (err, results) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        return res.json({
+            success: 1,
+            data: results,
+        });
+    }
+    );
+},
 };
