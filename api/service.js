@@ -88,7 +88,7 @@ module.exports = {
     );
 },
 
-  //----------------------------------
+
 
   searchByKeyword: (keyword, callback) => {
     pool.query(
@@ -102,4 +102,50 @@ module.exports = {
       }
     );
   },
+
+  addToCart: (data, callBack) => {
+    pool.query(
+      `select * from product_table where product_id = ?`,
+      [data.product_id],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        if (results.length == 0) {
+            return callBack(null, { error: "Invalid product ID" });
+        }
+        pool.query(
+          `insert into cart_table(productId,userId) values(?,?)`,
+          [data.product_id, data.user_id],
+          (error, results, fields) => {
+            if (error) {
+              return callBack(error);
+            }
+            return callBack(null, results);
+          }
+        );
+      }
+    );
+  },
+
+  getProductsInCart: (userId, callBack) => {
+    pool.query(
+      `select 
+        p.product_id,
+        p.title,
+        p.price,
+        p.image,
+        c.cartId
+        from cart_table c
+        inner join product_table p on c.productId = p.product_id
+        where c.userId = ?`,
+      [userId],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  }
 };
