@@ -1,22 +1,25 @@
 const pool = require('../config/database');
+// const { sendEmail } = require("./email");
 // const { get } = require('./user.router');
 module.exports = {
-userRegister: (data, callBack) => {
-    pool.query(
-        `insert into userTable(userName,email,password) values(?,?,?)`,
-        [
-            data.userName,
-            data.email,
-            data.password,
-        ],
-        (error, results, fields) => {
-            if(error){
-                return callBack(error);
+    userRegister: (data, callBack) => {
+        pool.query(
+          `insert into userTable(userName,email,password) values(?,?,?)`,
+          [data.userName, data.email, data.password],
+          async (error, results, fields) => {
+            if (error) {
+              return callBack(error);
             }
-            return callBack(null, results);
-        }
-    );
-},
+            try {
+              await sendEmail(data.email, data.userName, "Welcome to our website!");
+              return callBack(null, results);
+            } catch (error) {
+              console.error(error);
+              return callBack(error);
+            }
+          }
+        );
+      },
 getUserByEmail: (email,callBack) => {
     pool.query(
         `select 
