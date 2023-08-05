@@ -75,32 +75,17 @@ const Registration = () => {
               </div>
               <div>
                 <img src={email} alt="email" className="email" />
-                <input
-                  type="text"
-                  placeholder="Email"
-                  className="name"
-                  value={emailValue}
-                  onChange={(e) => setEmailValue(e.target.value)}
+                <input type="text" placeholder="Email" className="name" value={emailValue} onChange={(e) => setEmailValue(e.target.value)}
                 />
               </div>
               <div className="second-input">
                 <img src={pass} alt="pass" className="email" />
-                <input
-                  type="password"
-                  placeholder="password"
-                  className="name"
-                  value={passwordValue}
-                  onChange={(e) => setPasswordValue(e.target.value)}
+                <input type="password" placeholder="password" className="name" value={passwordValue} onChange={(e) => setPasswordValue(e.target.value)}
                 />
               </div>
               <div className="third-input">
                 <img src={pass} alt="pass" className="email" />
-                <input
-                  type="password"
-                  placeholder="Confirm password"
-                  className="name"
-                  value={confirmPasswordValue}
-                  onChange={(e) => setConfirmPasswordValue(e.target.value)}
+                <input type="password" placeholder="Confirm password" className="name" value={confirmPasswordValue} onChange={(e) => setConfirmPasswordValue(e.target.value)}
                 />
               </div>
               <div className="signup-button">
