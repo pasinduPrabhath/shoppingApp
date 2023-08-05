@@ -15,5 +15,5 @@ router.post("/products", getProducts);
 router.get("/searchByTitle/:keyword", searchByKeyword);
 router.post("/emailVerification", emailVerification);
 router.post("/addToCart", addToCart);
-router.get("/getProductsInCart", getProductsInCart);
+router.post("/getProductsInCart", getProductsInCart);
 module.exports = router;
