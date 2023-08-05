@@ -58,3 +58,7 @@ h1{
 .customerbutton:hover {
   background-color: rgb(168, 0, 0); 
 }
+
+.error-text {
+  color: red;
+}
