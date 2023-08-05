@@ -26,12 +26,12 @@ const Product = ({ products = [] }) => {
                 </Link>
                 <div class="mt-4">
                   <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">
-                    Computer and Accessories
+                    {category}
                   </h3>
                   <h2 class="text-gray-900 title-font text-lg font-medium">
                     {title}
                   </h2>
-                  <p class="mt-1">Rs :{price}.00</p>
+                  <p class="mt-1 font-medium text-red-500">Rs :{price}.00</p>
                 </div>
               </div>
             );
