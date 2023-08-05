@@ -8,7 +8,7 @@ export default function Login() {
             <h1>Login</h1>
             <form>
               <div>
-                <input type="text" id="username" placeholder='Enter the username'/>
+                <input type="text" id="email" placeholder='Enter the email'/>
               </div>
               <br />
               <div>
