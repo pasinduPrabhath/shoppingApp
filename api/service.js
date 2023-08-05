@@ -81,8 +81,9 @@ module.exports = {
                     return callBack(null, results);
                   }
                 );
-              } 
+              } else{
             return callBack(null, results);
+            }
         }
     );
 },
