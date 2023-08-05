@@ -5,6 +5,7 @@ import axios from "axios";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,9 +19,10 @@ export default function Login() {
       if (response.status === 200) {
         console.log(response.data);
       } else {
-        alert("Invalid username or password");
+        setError("Invalid username or password");
       }
     } catch (error) {
+      setError("An error occurred. Please try again later.");
       console.error(error);
     }
   };
@@ -29,6 +31,9 @@ export default function Login() {
     <div className="login-container">
       <div className="log">
         <h1 className="titile">Login</h1>
+        <div className="error-message">
+          {error && <p className="error-text">{error}</p>}
+        </div>
         <form onSubmit={handleSubmit}>
           <div>
             <input
