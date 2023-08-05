@@ -36,7 +36,7 @@
   border-radius: 130px;
 } 
 
-input{
+/* input{
     width: 300px;
     height: 50px;
     border-radius: 60px;
@@ -44,7 +44,7 @@ input{
     border: none;
     outline: none;
     background-color: #fff;
-}
+} */
 
 .email{
     height: 25px;
@@ -56,6 +56,13 @@ input{
 .name{
     padding-left: 70px;
     font-size: 20px;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+   
+    border: black;
+    outline: oklab(from color l a b);
+    background-color: #fff;
 }
 .second-input{
     padding-top: 20px;
@@ -65,24 +72,26 @@ input{
   padding-top: 20px;
 }
 
-button{
-    width: 380px;
-    height: 50px;
-    border-radius: 60px;
-    background-color: #b103fc;
-    color: white;
-    font-size: 25px;
-    border: none;
+.craeteBtn{
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: rgb(240, 0, 0);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
 }
+
 .signup-button{
     padding-top: 25px;
 }
 
 .link{
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 400;
 }
- a{
+ /* a{
      color: blue;
      
- }
+ } */
