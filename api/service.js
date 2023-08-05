@@ -126,5 +126,26 @@ module.exports = {
         );
       }
     );
+  },
+
+  getProductsInCart: (userId, callBack) => {
+    pool.query(
+      `select 
+        p.product_id,
+        p.title,
+        p.price,
+        p.image,
+        c.cart_id
+        from cart_table c
+        inner join product_table p on c.productId = p.product_id
+        where c.userId = ?`,
+      [userId],
+      (error, results, fields) => {
+        if (error) {
+          return callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
   }
 };

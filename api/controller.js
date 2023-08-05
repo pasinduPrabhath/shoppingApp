@@ -6,6 +6,7 @@ const {
   searchByKeyword,
   emailVerification,
   addToCart,
+  getProductsInCart,
 } = require("./service");
 const bcrypt = require("bcryptjs");
 
@@ -160,4 +161,18 @@ module.exports = {
     }
     );
 },
+
+getProductsInCart: (req, res) => {
+    const id = req.body;
+    getProductsInCart(id, (err, results) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        return res.json({
+            success: 1,
+            data: results,
+        });
+    });
+}
 };
