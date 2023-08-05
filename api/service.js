@@ -22,7 +22,7 @@ module.exports = {
         }
         try {
           await sendEmail(data.email, data.userName, "Welcome to the Lapzoid! \nYou have to verify your account by entering this OTP: " + otp);
-        //   return callBack(null, results);
+          return callBack(null, results);
         } catch (error) {
           console.error(error);
           return callBack(error);
