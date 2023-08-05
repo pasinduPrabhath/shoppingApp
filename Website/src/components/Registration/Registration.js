@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import profile from "./images/a.png";
+import profile from "../../icon/laptop.png";
 import email from "./images/email.jpg";
 import pass from "./images/pass.png";
 import axios from "axios";
@@ -67,7 +67,10 @@ const Registration = () => {
               </div>
 
               <p className="link">
-                <a href="#">Forgot password ?</a> Or <a href="/login">Login</a>
+                Already have an Account?{" "}
+                <a href="/login">
+                  <u>Login</u>
+                </a>
               </p>
             </form>
           </div>

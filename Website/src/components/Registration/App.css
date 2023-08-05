@@ -30,11 +30,7 @@
   height: 115px;
   width: 115px;
 }
-.profile {
-  height: 100px;
-  width: 100px;
-  border-radius: 130px;
-} 
+
 
 /* input{
     width: 300px;
@@ -91,7 +87,7 @@
     font-size: 20px;
     font-weight: 400;
 }
- /* a{
-     color: blue;
+ a{
+     color: rgb(30, 153, 253);
      
- } */
+ }

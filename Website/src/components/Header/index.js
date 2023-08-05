@@ -107,7 +107,8 @@ const Header = () => {
         </form>
         <button className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0">
           Cart
-          <img src={cart} alt="icon" className="w-5 h-5 mr-2 ml-5" />{" "}
+          <img src={cart} alt="icon" className="w-5 h-5 mr-2 ml-5" />
+          {""}
         </button>
         <button className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0">
           <a href="/login">Login</a>
