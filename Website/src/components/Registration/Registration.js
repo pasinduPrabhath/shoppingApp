@@ -49,7 +49,7 @@ const Registration = () => {
   };
 
   const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
   };
 
@@ -70,9 +70,18 @@ const Registration = () => {
           <div>
             <h1>Registration</h1>
             <form onSubmit={handleSubmit}>
+            <div className="error-message">
+                {error && <p>{error}</p>}
+              </div>
               <div>
                 <img src={email} alt="email" className="email" />
-                <input type="text" placeholder="Email" className="name" />
+                <input
+                  type="text"
+                  placeholder="Email"
+                  className="name"
+                  value={emailValue}
+                  onChange={(e) => setEmailValue(e.target.value)}
+                />
               </div>
               <div className="second-input">
                 <img src={pass} alt="pass" className="email" />
@@ -80,6 +89,8 @@ const Registration = () => {
                   type="password"
                   placeholder="password"
                   className="name"
+                  value={passwordValue}
+                  onChange={(e) => setPasswordValue(e.target.value)}
                 />
               </div>
               <div className="third-input">
@@ -102,9 +113,7 @@ const Registration = () => {
                   <u>Login</u>
                 </a>
               </p>
-              <div className="error-message">
-                {error && <p>{error}</p>}
-              </div>
+              
             </form>
           </div>
         </div>
