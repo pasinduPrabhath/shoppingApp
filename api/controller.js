@@ -117,8 +117,7 @@ module.exports = {
         }
         return res.json({
             success: 1,
-            data: results,
-            message: "Email verified successfully",
+            data: "Email verified successfully",
         });
     });
 },

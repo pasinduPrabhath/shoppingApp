@@ -72,7 +72,7 @@ module.exports = {
             }
             if (results.length > 0) {
                 pool.query(
-                  `update userTable set account_status = verified where email = ?`,
+                  `update userTable set account_status = 'verified' where email = ?`,
                   [email],
                   (error, results, fields) => {
                     if (error) {
