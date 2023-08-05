@@ -11,7 +11,7 @@ export default function Login() {
       
           try {
             const response = await axios.post(
-              'https://gowild.herokuapp.com/api/user/login',
+              'https://lapshopapp-f26f1576abb1.herokuapp.com/api/login',
               { email, password }
             );
       
