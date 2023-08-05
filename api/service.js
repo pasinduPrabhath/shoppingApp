@@ -1,5 +1,5 @@
 const pool = require('../config/database');
-// const { sendEmail } = require("./email");
+const { sendEmail } = require("./email");
 // const { get } = require('./user.router');
 module.exports = {
     userRegister: (data, callBack) => {
