@@ -27,6 +27,7 @@ import Header from "./components/Header";
 import Home from "./modules/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductCard from "./components/descriptionCard/descriptionCard";
+import Login from "./components/Login/Login";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/product/:product_id" element={<ProductCard />} />
-          {/* <Route path="/login/" element={<ProductCard />} /> */}
+          <Route path="/login/" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
