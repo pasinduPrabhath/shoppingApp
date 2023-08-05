@@ -112,7 +112,7 @@ module.exports = {
           return callBack(error);
         }
         if (results.length == 0) {
-          return callBack("Invalid product ID");
+            return callBack(null, { error: "Invalid product ID" });
         }
         pool.query(
           `insert into cart_table(productId,userId) values(?,?)`,
