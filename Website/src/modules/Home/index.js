@@ -24,7 +24,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(
+        const response = await axios.post(
           "https://lapshopapp-f26f1576abb1.herokuapp.com/api/products"
         );
         const products = response.data.data;
