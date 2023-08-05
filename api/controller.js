@@ -163,7 +163,7 @@ module.exports = {
 },
 
 getProductsInCart: (req, res) => {
-    const id = req.body;
+    const {id} = req.body;
     getProductsInCart(id, (err, results) => {
         if (err) {
             console.log(err);
