@@ -105,13 +105,25 @@ module.exports = {
 
   addToCart: (data, callBack) => {
     pool.query(
-      `insert into cart_table(productId,userId) values(?,?)`,
-      [data.product_id, data.user_id],
+      `select * from product_table where product_id = ?`,
+      [data.product_id],
       (error, results, fields) => {
         if (error) {
           return callBack(error);
         }
-        return callBack(null, results);
+        if (results.length == 0) {
+          return callBack("Invalid product ID");
+        }
+        pool.query(
+          `insert into cart_table(productId,userId) values(?,?)`,
+          [data.product_id, data.user_id],
+          (error, results, fields) => {
+            if (error) {
+              return callBack(error);
+            }
+            return callBack(null, results);
+          }
+        );
       }
     );
   }
