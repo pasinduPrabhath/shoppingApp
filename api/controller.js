@@ -62,13 +62,21 @@ module.exports = {
           data: "Invalid email or password",
         });
       }
-      const result = bcrypt.compareSync(password, results[0].password);
+      const user = results[0];
+      const result = bcrypt.compareSync(password, user.password);
       if (result) {
-        results[0].password = undefined;
-        return res.json({
-          success: 1,
-          data: results,
-        });
+        if (user.account_status === "verified") {
+          user.password = undefined;
+          return res.json({
+            success: 1,
+            data: user,
+          });
+        } else {
+          return res.json({
+            success: 0,
+            data: "Account not verified",
+          });
+        }
       } else {
         return res.json({
           success: 0,
@@ -77,6 +85,7 @@ module.exports = {
       }
     });
   },
+
   getProducts: (req, res) => {
     const { id } = req.body;
     getProducts(id, (err, results) => {
