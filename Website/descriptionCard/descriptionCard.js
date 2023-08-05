@@ -1,4 +1,7 @@
 import React from "react";
+import "./descriptionCard.css";
+import Header from "../src/components/Header";
+import Footer from "../src/components/Footer";
 
 const ProductCard = ({
   title,
@@ -15,7 +18,9 @@ const ProductCard = ({
   };
 
   return (
+
     <div className="container">
+        <Header />
       <div className="imgBx">
         <img src={colors.active.dataPic} alt="Nike Jordan Proto-Lyte Image" />
       </div>
@@ -41,6 +46,7 @@ const ProductCard = ({
           <button>Buy Now</button>
         </div>
       </div>
+        <Footer />
     </div>
   );
 };
