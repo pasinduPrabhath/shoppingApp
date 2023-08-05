@@ -36,6 +36,7 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/product/:product_id" element={<ProductCard />} />
+          {/* <Route path="/login/" element={<ProductCard />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
