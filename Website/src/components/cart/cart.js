@@ -50,7 +50,7 @@ const Cart1 = () => {
                                 <button
                                   className="hover:cursor "
                                 >
-                                  
+          
                                 </button>
                               </div>
                             </div>
