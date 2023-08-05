@@ -17,7 +17,7 @@ module.exports = {
           template_params: {
             sp_email: email,
             to_name: name,
-            admin_message: body
+            message: body
           }
         })
       });
