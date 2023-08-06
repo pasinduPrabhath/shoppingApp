@@ -33,11 +33,20 @@ const ProductSection = () => {
     //const userId = "22";
     const userId = localStorage.getItem("userId");
     try {
+      const token = localStorage.getItem("token");
+
+      console.log(token);
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
       const response = await axios.post(
         "https://lapshopapp-f26f1576abb1.herokuapp.com/api/addToCart",
         {
           user_id: userId,
           product_id: product_id,
+        },
+        {
+          headers: headers,
         }
       );
       console.log(response.data);
