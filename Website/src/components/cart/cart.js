@@ -162,7 +162,7 @@ const Cart1 = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const userId = localStorage.getItem("userId");
+        const userId = await localStorage.getItem("userId");
         const response = await axios.post(
           "https://lapshopapp-f26f1576abb1.herokuapp.com/api/getProductsInCart",
           {

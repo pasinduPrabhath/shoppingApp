@@ -18,8 +18,6 @@ export default function Login() {
 
       if (response.status === 200) {
         if (response.data.success === 1) {
-<<<<<<< HEAD
-=======
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("username", response.data.data.userName);
           localStorage.setItem("userId", response.data.data.userId);
@@ -30,7 +28,6 @@ export default function Login() {
           console.log(localStorage.getItem("userId"));
           console.log(localStorage.getItem("token"));
           window.location.href = "/";
->>>>>>> ca2bf14a6517ee48a92aafbdd71230ec7467f42d
         } else {
           setError(response.data.data);
         }

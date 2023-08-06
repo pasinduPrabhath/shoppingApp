@@ -48,8 +48,6 @@ const Header = () => {
     }
   }, [searchTerm]);
 
-<<<<<<< HEAD
-=======
   const logOutButtonClick = () => {
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("userId");
@@ -65,7 +63,6 @@ const Header = () => {
     }
   };
 
->>>>>>> ca2bf14a6517ee48a92aafbdd71230ec7467f42d
   return (
     <header className="text-gray-600 body-font shadow-lg">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -137,18 +134,6 @@ const Header = () => {
             </ul>
           )}
         </form>
-<<<<<<< HEAD
-        <Link to="/cart">
-        <button className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0">
-          Cart
-          <img src={cart} alt="icon" className="w-5 h-5 mr-2 ml-5" />
-          {""}
-        </button>
-        </Link>
-        <button className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0">
-          <a href="/login">Login</a>
-        </button>
-=======
 
         <Link>
           <button
@@ -177,7 +162,6 @@ const Header = () => {
             <a href="/login">Login</a>
           </button>
         )}
->>>>>>> ca2bf14a6517ee48a92aafbdd71230ec7467f42d
       </div>
     </header>
   );
