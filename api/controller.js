@@ -70,7 +70,7 @@ module.exports = {
       const result = bcrypt.compareSync(password, user.password);
       if (result) {
         if (user.account_status === "verified") {
-            const token = jwt.sign({ userId: user.id }, config.jwtSecret, {
+            const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
                 expiresIn: "1d",
               });
           user.password = undefined;
