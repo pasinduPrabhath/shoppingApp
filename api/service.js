@@ -22,7 +22,7 @@ userRegister: (data, callBack) => {
           return callBack(error);
         }
         try {
-          await sendEmail(data.email, data.userName, "Welcome to the Lapzoid! \nYou have to verify your account by entering this OTP: " + otp);
+          await sendEmail(data.email, data.userName, "Welcome to the Lapzoid! \nYou have to verify your account by entering this OTP: " + otp,"template_ecvqu3m");
           return callBack(null, results);
         } catch (error) {
           console.error(error);
@@ -194,6 +194,8 @@ removeFromCart: (data, callBack) => {
           (total, item) => total + item.price,
           0
         );
+        const orderSummary = results.map(item => `${item.title} x 1: $${item.price.toFixed(2)}`).join('\n');
+  
   
         // Insert a new row into the order table
         pool.query(
@@ -225,6 +227,12 @@ removeFromCart: (data, callBack) => {
                     if (error) {
                       return callBack(error);
                     }
+  
+                    const emailService = require('./emailjs');
+                    const email = data.email; // Replace with the user's email
+                    const name = data.name; // Replace with the user's name
+                    const message = `Thank you for your order!\n\nOrder Summary:\n${orderSummary}\n\nTotal Amount: $${totalAmount.toFixed(2)}`;
+                    emailService.sendEmail(email, name, message,"template_mtj5ece");
   
                     // Return the order ID
                     return callBack(null, { orderId });
