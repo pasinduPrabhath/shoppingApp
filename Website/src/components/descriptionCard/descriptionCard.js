@@ -66,14 +66,20 @@
 
 // export default ProductSection;
 
+
+
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 const ProductSection = () => {
   const { product_id } = useParams();
   console.log(product_id);
   const [product, setProduct] = useState(null);
+  const [successAlert, setSuccessAlert] = useState(false);
+  const [errorAlert, setErrorAlert] = useState(false);
 
   useEffect(() => {
     // Function to fetch data from the API
@@ -104,9 +110,13 @@ const ProductSection = () => {
         }
       );
       console.log(response.data); // Handle the response as needed
-      // Assuming you want to do something after adding to cart, you can add your logic here
+      setSuccessAlert(true);
+      setErrorAlert(false);
+      // window.location.reload(); // Reload the page after showing success alert
     } catch (error) {
       console.error("Error adding to cart:", error);
+      setErrorAlert(true);
+      setSuccessAlert(false);
     }
   };
 
@@ -145,6 +155,16 @@ const ProductSection = () => {
                 Add to cart
               </button>
             </div>
+            {successAlert && (
+              <Stack sx={{ width: '100%' }} spacing={2}>
+                <Alert severity="success">Item added to cart successfully!</Alert>
+              </Stack>
+            )}
+            {errorAlert && (
+              <Stack sx={{ width: '100%' }} spacing={2}>
+                <Alert severity="error">Error adding item to cart. Please try again.</Alert>
+              </Stack>
+            )}
           </div>
         </div>
       </div>
@@ -153,4 +173,5 @@ const ProductSection = () => {
 };
 
 export default ProductSection;
+
 
