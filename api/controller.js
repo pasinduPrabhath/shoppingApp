@@ -157,8 +157,9 @@ module.exports = {
 
   addToCart: (req, res) => {
     const data = req.body;
+    const token = req.headers.authorization.split(' ')[1];
   
-    jwt.verify(req.token, process.env.JWT_SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
