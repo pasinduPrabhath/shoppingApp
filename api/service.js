@@ -210,7 +210,7 @@ removeFromCart: (data, callBack) => {
             // Insert a new row into the order details table for each item in the cart
             const values = results.map((item) => [orderId, item.productId]);
             pool.query(
-              'INSERT INTO order_details_table (orderId, productId) VALUES ?',
+              'INSERT INTO order_table_details (orderId, productId) VALUES ?',
               [values],
               (error) => {
                 if (error) {
