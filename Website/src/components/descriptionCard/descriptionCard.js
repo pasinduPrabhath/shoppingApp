@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 
 const ProductSection = () => {
   const { product_id } = useParams();
@@ -30,7 +30,8 @@ const ProductSection = () => {
   }, [product_id]);
 
   const handleAddToCart = async () => {
-    const userId = "22"; // Hardcoded user ID, replace with actual user ID in a real application
+    //const userId = "22";
+    const userId = localStorage.getItem("userId");
     try {
       const response = await axios.post(
         "https://lapshopapp-f26f1576abb1.herokuapp.com/api/addToCart",
@@ -85,13 +86,17 @@ const ProductSection = () => {
               </button>
             </div>
             {successAlert && (
-              <Stack sx={{ width: '100%' }} spacing={2}>
-                <Alert severity="success">Item added to cart successfully!</Alert>
+              <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert severity="success">
+                  Item added to cart successfully!
+                </Alert>
               </Stack>
             )}
             {errorAlert && (
-              <Stack sx={{ width: '100%' }} spacing={2}>
-                <Alert severity="error">Error adding item to cart. Please try again.</Alert>
+              <Stack sx={{ width: "100%" }} spacing={2}>
+                <Alert severity="error">
+                  Error adding item to cart. Please try again.
+                </Alert>
               </Stack>
             )}
           </div>
