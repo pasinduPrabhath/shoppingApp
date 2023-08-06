@@ -210,7 +210,7 @@ getProductsInCart: (req, res) => {
   },
 
     placeOrder: (req, res) => {
-    const { userId } = req.body;
+    const data = req.body;
     jwt.verify(req.token, process.env.JWT_KEY, (err, authData) => {
         if (err) {
             // If the token is not valid, return an error response
@@ -220,7 +220,7 @@ getProductsInCart: (req, res) => {
             });
         } else {
             // If the token is valid, proceed with placing the order
-            placeOrder(userId, (err, results) => {
+            placeOrder(data, (err, results) => {
             if (err) {
                 console.log(err);
                 return;
