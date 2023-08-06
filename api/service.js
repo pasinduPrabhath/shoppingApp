@@ -177,7 +177,7 @@ removeFromCart: (data, callBack) => {
   placeOrder: (data, callBack) => {
     // Get the user's cart items with their prices
     pool.query(
-      'SELECT c.productId, c.quantity, p.price FROM cart_table c JOIN product_table p ON c.productId = p.product_id WHERE c.userId = ?',
+      'SELECT c.productId, p.price FROM cart_table c JOIN product_table p ON c.productId = p.product_id WHERE c.userId = ?',
       [data.userId],
       (error, results) => {
         if (error) {
@@ -208,16 +208,16 @@ removeFromCart: (data, callBack) => {
             const orderId = result.insertId;
   
             // Insert a new row into the order details table for each item in the cart
-            const values = results.map((item) => [orderId, item.productId, item.quantity]);
+            const values = results.map((item) => [orderId, item.productId]);
             pool.query(
-              'INSERT INTO order_details_table (orderId, productId, quantity) VALUES ?',
+              'INSERT INTO order_details_table (orderId, productId) VALUES ?',
               [values],
               (error) => {
                 if (error) {
                   return callBack(error);
                 }
   
-                // Delete the cart items
+                // Delete the cart items 
                 pool.query(
                   'DELETE FROM cart_table WHERE userId = ?',
                   [data.userId],
