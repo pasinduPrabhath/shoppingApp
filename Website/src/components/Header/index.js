@@ -3,6 +3,7 @@ import icon from "../../icon/laptop.png";
 import cart from "../../icon/cart.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -52,6 +53,14 @@ const Header = () => {
     window.location.reload();
   };
 
+  const cartPageOpen = () => {
+    if (!localStorage.getItem("isLoggedIn")) {
+      window.location.href = "/login";
+    } else {
+      window.location.href = "/cart";
+    }
+  };
+
   return (
     <header className="text-gray-600 body-font shadow-lg">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -64,17 +73,25 @@ const Header = () => {
         </Link>
 
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          <Link to="/product" className="mr-5 hover:text-gray-900">
-            Products
-          </Link>
-          <Link to="/description-card" className="mr-5 hover:text-gray-900">
-            Description card
-          </Link>
-          <Link
-            to="/registration/EmailVerify"
+          <ScrollLink
+            to="product-section"
+            smooth={true}
+            duration={500}
             className="mr-5 hover:text-gray-900"
           >
-            Email varification
+            Products
+          </ScrollLink>
+          <Link
+            // to="/description-card"
+            className="mr-5 hover:text-gray-900"
+          >
+            Contact Us
+          </Link>
+          <Link
+            // to="/registration/EmailVerify"
+            className="mr-5 hover:text-gray-900"
+          >
+            About us
           </Link>
         </nav>
         <form
@@ -115,8 +132,12 @@ const Header = () => {
             </ul>
           )}
         </form>
-        <Link to="/cart">
-          <button className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0">
+
+        <Link>
+          <button
+            className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0"
+            onClick={cartPageOpen}
+          >
             Cart
             <img src={cart} alt="icon" className="w-5 h-5 mr-2 ml-5" />
             {""}

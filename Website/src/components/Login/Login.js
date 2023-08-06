@@ -19,11 +19,14 @@ export default function Login() {
       if (response.status === 200) {
         if (response.data.success === 1) {
           localStorage.setItem("isLoggedIn", "true");
-          localStorage.setItem("userId", response.data.data.userId);
           localStorage.setItem("username", response.data.data.userName);
-          console.log("" + localStorage.getItem("isLoggedIn"));
-          console.log("" + localStorage.getItem("username"));
-          console.log("" + localStorage.getItem("userId"));
+          localStorage.setItem("userId", response.data.data.userId);
+          localStorage.setItem("token", response.data.token);
+
+          console.log(localStorage.getItem("isLoggedIn"));
+          console.log(localStorage.getItem("username"));
+          console.log(localStorage.getItem("userId"));
+          console.log(localStorage.getItem("token"));
           window.location.href = "/";
         } else {
           setError(response.data.data);
