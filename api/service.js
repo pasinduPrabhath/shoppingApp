@@ -197,8 +197,8 @@ removeFromCart: (data, callBack) => {
   
         // Insert a new row into the order table
         pool.query(
-          'INSERT INTO order_table (userId, totalAmount) VALUES (?, ?)',
-          [data.userId, totalAmount],
+          'INSERT INTO order_table (userId, totalAmount,orderDate,addressLine1,addressLine2,phone,district,zipcode) VALUES (?, ?,?,?,?,?,?,?)',
+          [data.userId, totalAmount,data.orderDate,data.addressLine1,data.addressLine2,data.phone,data.district,data.zipcode],
           (error, result) => {
             if (error) {
               return callBack(error);
