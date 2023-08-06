@@ -1,4 +1,8 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:shopapp/registerPage.dart';
+import 'package:shopapp/screens.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -13,11 +17,10 @@ class _MyLoginState extends State<MyLogin> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('mobile_app/shopapp/images/login.png'),
-            fit: BoxFit.cover),
+            image: AssetImage('images/login.png'), fit: BoxFit.cover),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(165, 0, 0, 0),
         body: Stack(children: [
           Container(
             padding: const EdgeInsets.only(left: 35, top: 180),
@@ -36,7 +39,7 @@ class _MyLoginState extends State<MyLogin> {
               child: Column(children: [
                 TextField(
                   decoration: InputDecoration(
-                    fillColor: Color.fromARGB(58, 245, 245, 245),
+                    fillColor: Color.fromARGB(150, 245, 245, 245),
                     filled: true,
                     hintText: 'Email',
                     border: OutlineInputBorder(
@@ -50,7 +53,7 @@ class _MyLoginState extends State<MyLogin> {
                 TextField(
                   obscureText: true,
                   decoration: InputDecoration(
-                    fillColor: Color.fromARGB(58, 245, 245, 245),
+                    fillColor: Color.fromARGB(128, 245, 245, 245),
                     filled: true,
                     hintText: 'Password',
                     border: OutlineInputBorder(
@@ -76,7 +79,7 @@ class _MyLoginState extends State<MyLogin> {
                         'Sign In',
                         style: TextStyle(
                           fontSize: 18,
-                          color: Color.fromARGB(255, 35, 35, 35),
+                          color: Color.fromARGB(255, 0, 0, 0),
                         ),
                       ),
                     ),
@@ -86,11 +89,10 @@ class _MyLoginState extends State<MyLogin> {
                       child: IconButton(
                         color: const Color.fromARGB(255, 24, 24, 24),
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => mainScreen()),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Screens()),
+                          );
                         },
                         icon: const Icon(Icons.arrow_forward),
                       ),
@@ -105,17 +107,17 @@ class _MyLoginState extends State<MyLogin> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => MyRegister()),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyRegister()),
+                          );
                         },
                         child: const Text(
                           'Sign Up',
                           style: TextStyle(
                             fontSize: 18,
-                            color: Color.fromARGB(255, 51, 51, 51),
+                            color: Color.fromARGB(255, 0, 0, 0),
                           ),
                         ),
                       ),
@@ -125,7 +127,7 @@ class _MyLoginState extends State<MyLogin> {
                           'Forgot Password',
                           style: TextStyle(
                             fontSize: 18,
-                            color: Color.fromARGB(255, 38, 38, 38),
+                            color: Color.fromARGB(255, 0, 0, 0),
                           ),
                         ),
                       ),
