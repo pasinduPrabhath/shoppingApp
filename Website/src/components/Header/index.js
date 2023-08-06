@@ -58,16 +58,16 @@ const Header = () => {
 
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
           <Link to="/product" className="mr-5 hover:text-gray-900">
-            Product
+            Products
           </Link>
           <Link to="/description-card" className="mr-5 hover:text-gray-900">
-            About Us
+            Description card
           </Link>
           <Link
             to="/registration/EmailVerify"
             className="mr-5 hover:text-gray-900"
           >
-            Contact Us
+            Email varification
           </Link>
         </nav>
         <form
@@ -108,11 +108,13 @@ const Header = () => {
             </ul>
           )}
         </form>
+        <Link to="/cart">
         <button className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0">
           Cart
           <img src={cart} alt="icon" className="w-5 h-5 mr-2 ml-5" />
           {""}
         </button>
+        </Link>
         <button className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0">
           <a href="/login">Login</a>
         </button>

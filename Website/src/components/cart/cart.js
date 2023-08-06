@@ -10,10 +10,10 @@ const Cart1 = () => {
                 <div className="grid grid-cols-7 text-center my-8 mx-16 bg-gray-100">
                   <div className="flex justify-center items-center font-medium text-gray-400 w-full h-12 mx-auto"></div>
                   <div className="flex justify-center items-center font-medium text-gray-400 w-full h-12 mx-auto col-span-2">
-                  Computer and Accessories
+                  category
                   </div>
                   <div className="flex justify-center items-center font-medium text-gray-400 w-full h-12">
-                  Features
+                  Item
                   </div>
                  
                   <div className="flex justify-center items-center font-medium text-gray-400 w-full h-12">
@@ -33,13 +33,12 @@ const Cart1 = () => {
                                 />
                               </div>
                               <div className="flex justify-center font-medium items-center w-full col-span-2">
-                                <p class="block text-center ">MacBook Pro M2 Pro – 14</p>
+                                <p class="block text-center ">Laptop_Bags</p>
                               </div>
                               <div className="flex justify-center font-medium items-center w-full  col-span-1">
-                                <p class="block text-left ">(10-Core CPU, 16-Core GPU, 16GB Unified Memory, 512GB SSD Storage</p>
-                              </div>
+                                <p class="block text-left ">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</p></div>
                               <div className="flex justify-center font-medium items-center w-full col-span-1">
-                                <p class="block ml-10">Rs.650000.00</p>
+                                <p class="block ml-10">Rs.3000.00</p>
                               </div>
                               <div className="flex justify-center font-medium items-center w-full col-span-1">
                                 <p class="block ml-10">
@@ -50,7 +49,6 @@ const Cart1 = () => {
                                 <button
                                   className="hover:cursor "
                                 >
-          
                                 </button>
                               </div>
                             </div>

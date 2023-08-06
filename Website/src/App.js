@@ -47,6 +47,7 @@ function App() {
           <Route path="/login/" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
           <Route path="/registration/EmailVerify" element={<EmailVerify />} />
+          <Route path="/cart" element={<Cart/>}/>
         </Routes>
       </BrowserRouter>
     </div>
