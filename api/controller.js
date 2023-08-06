@@ -164,7 +164,7 @@ module.exports = {
       }
   
       // Add the item to the user's cart
-      addToCart({ user_id: decoded.user_id, product_id: data.product_id }, (err, results) => {
+      addToCart({ user_id: data.user_id, product_id: data.product_id }, (err, results) => {
         if (err) {
           console.log(err);
           return res.status(500).json({ error: 'Internal server error' });
