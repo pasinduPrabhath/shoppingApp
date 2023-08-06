@@ -172,5 +172,69 @@ removeFromCart: (data, callBack) => {
         return callBack(null, results);
       }
     );
+  },
+
+  placeOrder: (data, callBack) => {
+    // Get the user's cart items
+    pool.query(
+      'SELECT * FROM cart_table WHERE userId = ?',
+      [data.userId],
+      (error, results) => {
+        if (error) {
+          return callBack(error);
+        }
+  
+        // Check if the cart is empty
+        if (results.length === 0) {
+          return callBack(null, { error: 'Cart is empty' });
+        }
+  
+        // Calculate the total amount of the order
+        const totalAmount = results.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
+  
+        // Insert a new row into the order table
+        pool.query(
+          'INSERT INTO order_table (userId, totalAmount) VALUES (?, ?)',
+          [data.userId, totalAmount],
+          (error, result) => {
+            if (error) {
+              return callBack(error);
+            }
+  
+            // Get the ID of the new order
+            const orderId = result.insertId;
+  
+            // Insert a new row into the order details table for each item in the cart
+            const values = results.map((item) => [orderId, item.productId]);
+            pool.query(
+              'INSERT INTO order_details_table (orderId, productId) VALUES ?',
+              [values],
+              (error) => {
+                if (error) {
+                  return callBack(error);
+                }
+  
+                // Delete the cart items
+                pool.query(
+                  'DELETE FROM cart_table WHERE userId = ?',
+                  [data.userId],
+                  (error) => {
+                    if (error) {
+                      return callBack(error);
+                    }
+  
+                    // Return the order ID
+                    return callBack(null, { orderId });
+                  }
+                );
+              }
+            );
+          }
+        );
+      }
+    );
   }
 };

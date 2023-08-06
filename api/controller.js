@@ -9,6 +9,7 @@ const {
   addToCart,
   getProductsInCart,
   removeFromCart,
+  placeOrder
 } = require("./service");
 const bcrypt = require("bcryptjs");
 
@@ -207,5 +208,31 @@ getProductsInCart: (req, res) => {
       }
     });
   },
+
+    placeOrder: (req, res) => {
+    const { userId } = req.body;
+    jwt.verify(req.token, process.env.JWT_KEY, (err, authData) => {
+        if (err) {
+            // If the token is not valid, return an error response
+            return res.status(403).json({
+            success: 0,
+            message: "Invalid token",
+            });
+        } else {
+            // If the token is valid, proceed with placing the order
+            placeOrder(userId, (err, results) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            return res.json({
+                success: 1,
+                data: results,
+            });
+            });
+        }
+        }
+    );
+    },
   
 };
