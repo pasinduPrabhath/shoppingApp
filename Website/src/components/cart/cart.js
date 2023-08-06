@@ -10,19 +10,28 @@ const Cart1 = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
+        const token = localStorage.getItem("token");
+        console.log(token);
+        const headers = {
+          Authorization: `Bearer ${token}`,
+        };
         const userId = localStorage.getItem("userId");
         console.log("suer id" + userId);
         const response = await axios.post(
           "https://lapshopapp-f26f1576abb1.herokuapp.com/api/getProductsInCart",
           {
-            id: 5,
+            userId: 5,
+          },
+          {
+            headers: headers,
           }
         );
+        console.log(response.data);
 
         setCartItems(response.data.data);
 
         const fetchedCartItems = response.data.data;
-        
+
         // Calculate subtotal by summing up prices of all items
         const calculatedSubtotal = fetchedCartItems.reduce(
           (acc, item) => acc + item.price,
@@ -39,8 +48,6 @@ const Cart1 = () => {
         setSubtotal(calculatedSubtotal);
         setDiscount(calculatedDiscount);
         setTotal(calculatedTotal);
-
-
       } catch (error) {
         console.error("Error fetching cart items:", error);
       }
@@ -108,15 +115,15 @@ const Cart1 = () => {
               Summary
             </div>
             <div className="flex-grow border-t border-gray-400"></div>
-            
-           <div className="subtotal">
-            <div className="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
-              <ul className="flex justify-between ">
-                <li className="block  text-gray-600 ml-5">Sub-total</li>
-                <li className="block  text-gray-600 mr-5">{subtotal}</li>
-              </ul>
+
+            <div className="subtotal">
+              <div className="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
+                <ul className="flex justify-between ">
+                  <li className="block  text-gray-600 ml-5">Sub-total</li>
+                  <li className="block  text-gray-600 mr-5">{subtotal}</li>
+                </ul>
+              </div>
             </div>
-          </div>
 
             <div className="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
               <ul className="flex justify-between ">
