@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ReactModal from "react-modal";
 
 const Cart1 = () => {
   const [cartItems, setCartItems] = useState([]);
   const [subtotal, setSubtotal] = useState(0); // Initialize with 0
   const [discount, setDiscount] = useState(0); // Initialize with 0
   const [total, setTotal] = useState(0); // Initialize with 0
+  const [showSessionTimeoutPopup, setShowSessionTimeoutPopup] = useState(false);
 
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
         const token = localStorage.getItem("token");
+        //  const token = "wedwdeSS";
         console.log(token);
         const headers = {
           Authorization: `Bearer ${token}`,
@@ -20,12 +23,14 @@ const Cart1 = () => {
         const response = await axios.post(
           "https://lapshopapp-f26f1576abb1.herokuapp.com/api/getProductsInCart",
           {
-            userId: 5,
+            userId: userId,
           },
           {
             headers: headers,
           }
         );
+        console.log(response.message);
+
         console.log(response.data);
 
         setCartItems(response.data.data);
@@ -49,15 +54,52 @@ const Cart1 = () => {
         setDiscount(calculatedDiscount);
         setTotal(calculatedTotal);
       } catch (error) {
-        console.error("Error fetching cart items:", error);
+        console.error("Error fetching cart items:", error.response.status);
+        if (error.response.status === 403) {
+          setShowSessionTimeoutPopup(true);
+          localStorage.removeItem("isLoggedIn");
+          localStorage.removeItem("userId");
+          localStorage.removeItem("username");
+          // window.location.reload();
+          return;
+          //window.location.href = "/login";
+        }
       }
     };
 
     fetchCartItems();
   }, []);
 
+  const clearCart = async () => {
+    //const userId = "22";
+    const userId = localStorage.getItem("userId");
+    try {
+      const response = await axios.post(
+        "https://lapshopapp-f26f1576abb1.herokuapp.com/api/removeFromCart",
+        {
+          user_id: userId,
+          //product_id: product_id,
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error deleting to cart:", error);
+    }
+  };
+
   return (
     <>
+      <ReactModal
+        isOpen={showSessionTimeoutPopup}
+        onRequestClose={() => setShowSessionTimeoutPopup(false)}
+        // Add appropriate CSS styles and content for the popup
+      >
+        <h2>Session Timeout</h2>
+        <p>Your session has expired. Please login again.</p>
+        <button onClick={() => (window.location.href = "/login")}>
+          Go to Login
+        </button>
+      </ReactModal>
       <div className="grid grid-cols-4 bg-white">
         <div className="col-start-1 col-end-4 bg-white-500">
           <div className="grid grid-cols-7 text-center my-8 mx-16 bg-gray-100">
@@ -100,7 +142,10 @@ const Cart1 = () => {
           ))}
 
           <div className="flex justify-end">
-            <button className="mr-16 px-5 py-3 bg-red-500 text-white rounded-md">
+            <button
+              className="mr-16 px-5 py-3 bg-red-500 text-white rounded-md"
+              onClick={clearCart}
+            >
               Clear Cart
             </button>
           </div>
