@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:shopapp/theme.dart';
-
-import 'Loginpage.dart';
+import 'package:shopapp/screens.dart';
 
 void main() {
-  runApp(const store());
+  runApp(MyApp());
 }
 
-class store extends StatelessWidget {
-  const store({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Fresh-Buyer',
-      theme: appTheme(),
-      home: const MyLogin(),
+      home: Screens(),
     );
   }
 }

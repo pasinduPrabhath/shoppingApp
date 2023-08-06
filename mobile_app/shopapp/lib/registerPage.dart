@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fresh_store_ui/loginPage.dart';
+
+import 'Loginpage.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
