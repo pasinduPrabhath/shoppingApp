@@ -49,14 +49,6 @@ const Cart1 = () => {
     fetchCartItems();
   }, []);
 
-  const handleClearCart = () => {
-    // Clear cart items and reset the calculations
-    setCartItems([]);
-    setSubtotal(0);
-    setDiscount(0);
-    setTotal(0);
-  };
-
   return (
     <>
       <div className="grid grid-cols-4 bg-white">
@@ -101,11 +93,9 @@ const Cart1 = () => {
           ))}
 
           <div className="flex justify-end">
-          <button
-          onClick={handleClearCart}
-          className="mr-16 px-5 py-3 bg-red-500 text-white rounded-md"
-        ></button>
-        
+            <button className="mr-16 px-5 py-3 bg-red-500 text-white rounded-md">
+              Clear Cart
+            </button>
           </div>
         </div>
 
