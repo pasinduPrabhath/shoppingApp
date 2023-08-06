@@ -70,18 +70,49 @@ const Cart1 = () => {
     fetchCartItems();
   }, []);
 
-  const clearCart = async () => {
+  // const clearCart = async () => {
+  //   //const userId = "22";
+
+  //   const userId = localStorage.getItem("userId");
+  //   try {
+  //     const response = await axios.post(
+  //       "https://lapshopapp-f26f1576abb1.herokuapp.com/api/removeFromCart",
+  //       {
+  //         user_id: userId,
+  //         //product_id: product_id,
+  //       }
+  //     );
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error("Error deleting to cart:", error);
+  //   }
+  // };
+
+  const removeItemById = async (id) => {
     //const userId = "22";
+    const token = localStorage.getItem("token");
+    //  const token = "wedwdeSS";
+    console.log(token);
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
     const userId = localStorage.getItem("userId");
+    const product_id = id;
+    console.log("p id " + product_id);
+    console.log(userId);
     try {
       const response = await axios.post(
         "https://lapshopapp-f26f1576abb1.herokuapp.com/api/removeFromCart",
         {
-          user_id: userId,
-          //product_id: product_id,
+          userId: userId,
+          productId: product_id,
+        },
+        {
+          headers: headers,
         }
       );
       console.log(response.data);
+      window.location.reload();
     } catch (error) {
       console.error("Error deleting to cart:", error);
     }
@@ -135,19 +166,24 @@ const Cart1 = () => {
                   <p className="block ml-10">Rs. {item.price}</p>
                 </div>
                 <div className="flex justify-center font-medium items-center w-full col-span-1">
-                  <button className="hover:cursor "></button>
+                  <button
+                    className="hover:cursor text-red-700 ml-8"
+                    onClick={() => removeItemById(item.product_id)}
+                  >
+                    Remove item
+                  </button>
                 </div>
               </div>
             </div>
           ))}
 
           <div className="flex justify-end">
-            <button
+            {/* <button
               className="mr-16 px-5 py-3 bg-red-500 text-white rounded-md"
               onClick={clearCart}
             >
               Clear Cart
-            </button>
+            </button> */}
           </div>
         </div>
 
