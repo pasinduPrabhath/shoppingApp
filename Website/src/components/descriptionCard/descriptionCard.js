@@ -83,7 +83,7 @@ const ProductSection = () => {
           "https://lapshopapp-f26f1576abb1.herokuapp.com/api/products",
           { id: product_id }
         );
-        // Assuming the API response has "data" property containing product information
+
         setProduct(response.data.data[0]);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -94,7 +94,13 @@ const ProductSection = () => {
   }, [product_id]);
 
   const handleAddToCart = async () => {
-    const userId = "22"; // Hardcoded user ID, replace with actual user ID in a real application
+    if (!localStorage.getItem("userId")) {
+      window.location.href = "/login";
+    } else {
+      //window.location.href = "/cart";
+      console.log("logged person can add cart");
+    }
+    const userId = localStorage.getItem("userId");
     try {
       const response = await axios.post(
         "https://lapshopapp-f26f1576abb1.herokuapp.com/api/addToCart",
@@ -103,8 +109,8 @@ const ProductSection = () => {
           product_id: product_id,
         }
       );
-      console.log(response.data); // Handle the response as needed
-      // Assuming you want to do something after adding to cart, you can add your logic here
+      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -153,4 +159,3 @@ const ProductSection = () => {
 };
 
 export default ProductSection;
-

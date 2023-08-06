@@ -45,6 +45,13 @@ const Header = () => {
     }
   }, [searchTerm]);
 
+  const logOutButtonClick = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
+    window.location.reload();
+  };
+
   return (
     <header className="text-gray-600 body-font shadow-lg">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -109,15 +116,24 @@ const Header = () => {
           )}
         </form>
         <Link to="/cart">
-        <button className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0">
-          Cart
-          <img src={cart} alt="icon" className="w-5 h-5 mr-2 ml-5" />
-          {""}
-        </button>
+          <button className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0">
+            Cart
+            <img src={cart} alt="icon" className="w-5 h-5 mr-2 ml-5" />
+            {""}
+          </button>
         </Link>
-        <button className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0">
-          <a href="/login">Login</a>
-        </button>
+        {localStorage.getItem("isLoggedIn") ? (
+          <button
+            className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0"
+            onClick={logOutButtonClick}
+          >
+            <a href="/login">Log Out</a>
+          </button>
+        ) : (
+          <button className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0">
+            <a href="/login">Login</a>
+          </button>
+        )}
       </div>
     </header>
   );
