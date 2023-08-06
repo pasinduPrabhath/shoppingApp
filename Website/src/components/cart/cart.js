@@ -158,6 +158,9 @@ import axios from "axios";
 
 const Cart1 = () => {
   const [cartItems, setCartItems] = useState([]);
+  const [subtotal, setSubtotal] = useState(0); // Initialize with 0
+  const [discount, setDiscount] = useState(0); // Initialize with 0
+  const [total, setTotal] = useState(0); // Initialize with 0
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -169,7 +172,29 @@ const Cart1 = () => {
             id: userId,
           }
         );
+
         setCartItems(response.data.data);
+
+        const fetchedCartItems = response.data.data;
+        
+        // Calculate subtotal by summing up prices of all items
+        const calculatedSubtotal = fetchedCartItems.reduce(
+          (acc, item) => acc + item.price,
+          0
+        );
+
+        // Calculate discount (assuming 5%)
+        const calculatedDiscount = calculatedSubtotal * 0.05;
+
+        // Calculate total by subtracting discount from subtotal
+        const calculatedTotal = calculatedSubtotal - calculatedDiscount;
+
+        setCartItems(fetchedCartItems);
+        setSubtotal(calculatedSubtotal);
+        setDiscount(calculatedDiscount);
+        setTotal(calculatedTotal);
+
+
       } catch (error) {
         console.error("Error fetching cart items:", error);
       }
@@ -237,25 +262,27 @@ const Cart1 = () => {
               Summary
             </div>
             <div className="flex-grow border-t border-gray-400"></div>
-
+            
+           <div className="subtotal">
             <div className="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
               <ul className="flex justify-between ">
                 <li className="block  text-gray-600 ml-5">Sub-total</li>
-                <li className="block  text-gray-600 mr-5">00LKR</li>
+                <li className="block  text-gray-600 mr-5">{subtotal}</li>
               </ul>
             </div>
+          </div>
 
             <div className="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
               <ul className="flex justify-between ">
                 <li className="block  text-gray-600 ml-5">Discount</li>
-                <li className="block  text-gray-600 mr-5">00LKR</li>
+                <li className="block  text-gray-600 mr-5">{discount}LKR(5%)</li>
               </ul>
             </div>
 
             <div className="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
               <ul className="flex justify-between ">
                 <li className="block  text-gray-600 ml-5">Total</li>
-                <li className="block  text-gray-600 mr-5">00LKR</li>
+                <li className="block  text-gray-600 mr-5">{total}LKR</li>
               </ul>
             </div>
 
