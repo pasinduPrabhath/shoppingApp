@@ -1,5 +1,4 @@
 const { get } = require("./router");
-const jwt = require("jsonwebtoken");
 const {
   userRegister,
   getUserByEmail,
@@ -70,13 +69,10 @@ module.exports = {
       const result = bcrypt.compareSync(password, user.password);
       if (result) {
         if (user.account_status === "verified") {
-            const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-                expiresIn: "1d",
-              });
           user.password = undefined;
           return res.json({
             success: 1,
-            data: user,token,
+            data: user,
           });
         } else {
           return res.json({

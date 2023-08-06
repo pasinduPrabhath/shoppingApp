@@ -11,7 +11,6 @@ function generateOTP() {
     }
     return otp;
   }
-
 module.exports = {
 userRegister: (data, callBack) => {
     const otp = generateOTP();
