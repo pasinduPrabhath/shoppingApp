@@ -128,10 +128,10 @@ addToCart: (data, callBack) => {
     );
   },
 
-removeFromCart: (userId,productId, callBack) => {
+removeFromCart: (data, callBack) => {
     pool.query(
         `select * from cart_table where productId = ? AND userId = ?`,
-        [productId, userId],
+        [data.productId, data.userId],
         (error, results, fields) => {
             if (error) {
                 return callBack(error);
@@ -141,7 +141,7 @@ removeFromCart: (userId,productId, callBack) => {
             }
             pool.query(
                 `delete from cart_table where productId = ? AND userId = ?`,
-                [productId, userId],
+                [data.productId, data.userId],
                 (error, results, fields) => {
                     if (error) {
                         return callBack(error);

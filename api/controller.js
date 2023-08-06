@@ -164,8 +164,8 @@ addToCart: (req, res) => {
 },
 
 removeFromCart: (req, res) => {
-    const {productId,userId} = req.body;
-    removeFromCart(productId,userId, (err, results) => {
+    const data = req.body;
+    removeFromCart(data, (err, results) => {
         if (err) {
             console.log(err);
             return;
