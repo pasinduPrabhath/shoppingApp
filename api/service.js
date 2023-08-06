@@ -34,7 +34,7 @@ userRegister: (data, callBack) => {
 getUserByEmail: (email, callBack) => {
     pool.query(
       `select 
-        userId,userName,email,account_status
+        userId,userName,email,account_status,password
         from userTable
         where
         email = ?`,
