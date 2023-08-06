@@ -160,7 +160,7 @@ removeFromCart: (data, callBack) => {
         p.price,
         p.image,
         p.category,
-        c.cartId,
+        c.cartId
         from cart_table c
         inner join product_table p on c.productId = p.product_id
         where c.userId = ?`,
