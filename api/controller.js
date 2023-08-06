@@ -1,4 +1,5 @@
 const { get } = require("./router");
+const jwt = require("jsonwebtoken");
 const {
   userRegister,
   getUserByEmail,
