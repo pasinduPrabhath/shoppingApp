@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import icon from "../../icon/laptop.png";
 import cart from "../../icon/cart.png";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 import axios from "axios";
 import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 const Header = () => {
+  const name = localStorage.getItem("username");
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   //const history = useHistory();
@@ -144,12 +146,17 @@ const Header = () => {
           </button>
         </Link>
         {localStorage.getItem("isLoggedIn") ? (
-          <button
-            className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0"
-            onClick={logOutButtonClick}
-          >
-            <a href="/login">Log Out</a>
-          </button>
+          <div className="flex items-center">
+            <FaUser className="text-xl mr-2 ml-10" />
+            {}
+            {<span className="ml-3 text-xl items-center">{name}</span>}
+            <button
+              className="inline-flex items-center border-0 py-2 px-4  bg-slate-300  focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0"
+              onClick={logOutButtonClick}
+            >
+              <a href="/login">Log Out</a>
+            </button>
+          </div>
         ) : (
           <button className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0">
             <a href="/login">Login</a>
