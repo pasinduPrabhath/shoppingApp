@@ -179,16 +179,22 @@ removeFromCart: (req, res) => {
 },
 
 getProductsInCart: (req, res) => {
-    const {id} = req.body;
-    getProductsInCart(id, (err, results) => {
+    const {userId} = req.body;
+    jwt.verify(req.token,process.env.JWT_SECRET,(err, authData) => {
         if (err) {
-            console.log(err);
-            return;
+          res.sendStatus(403);
+        } else {
+          getProductsInCart(userId, (err, results) => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            return res.json({
+              success: 1,
+              data: results,
+            });
+          });
         }
-        return res.json({
-            success: 1,
-            data: results,
-        });
-    });
+      });
 }
 };

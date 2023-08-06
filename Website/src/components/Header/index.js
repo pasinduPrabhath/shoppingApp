@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import icon from "../../icon/laptop.png";
 import cart from "../../icon/cart.png";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
 import axios from "axios";
+import { Link as ScrollLink, animateScroll as scroll } from "react-scroll";
 
 const Header = () => {
+  const name = localStorage.getItem("username");
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   //const history = useHistory();
@@ -45,6 +48,24 @@ const Header = () => {
     }
   }, [searchTerm]);
 
+<<<<<<< HEAD
+=======
+  const logOutButtonClick = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
+    window.location.reload();
+  };
+
+  const cartPageOpen = () => {
+    if (!localStorage.getItem("isLoggedIn")) {
+      window.location.href = "/login";
+    } else {
+      window.location.href = "/cart";
+    }
+  };
+
+>>>>>>> ca2bf14a6517ee48a92aafbdd71230ec7467f42d
   return (
     <header className="text-gray-600 body-font shadow-lg">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -57,17 +78,25 @@ const Header = () => {
         </Link>
 
         <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-          <Link to="/product" className="mr-5 hover:text-gray-900">
-            Products
-          </Link>
-          <Link to="/description-card" className="mr-5 hover:text-gray-900">
-            Description card
-          </Link>
-          <Link
-            to="/registration/EmailVerify"
+          <ScrollLink
+            to="product-section"
+            smooth={true}
+            duration={500}
             className="mr-5 hover:text-gray-900"
           >
-            Email varification
+            Products
+          </ScrollLink>
+          <Link
+            // to="/description-card"
+            className="mr-5 hover:text-gray-900"
+          >
+            Contact Us
+          </Link>
+          <Link
+            // to="/registration/EmailVerify"
+            className="mr-5 hover:text-gray-900"
+          >
+            About us
           </Link>
         </nav>
         <form
@@ -108,6 +137,7 @@ const Header = () => {
             </ul>
           )}
         </form>
+<<<<<<< HEAD
         <Link to="/cart">
         <button className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0">
           Cart
@@ -118,6 +148,36 @@ const Header = () => {
         <button className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0">
           <a href="/login">Login</a>
         </button>
+=======
+
+        <Link>
+          <button
+            className="inline-flex   items-center bg-red-500 border-0 py-2 px-4 focus:outline-none text-white hover:bg-red-700 rounded text-base mt-4 mr-5 md:mt-0"
+            onClick={cartPageOpen}
+          >
+            Cart
+            <img src={cart} alt="icon" className="w-5 h-5 mr-2 ml-5" />
+            {""}
+          </button>
+        </Link>
+        {localStorage.getItem("isLoggedIn") ? (
+          <div className="flex items-center">
+            <FaUser className="text-xl mr-2 ml-10" />
+            {}
+            {<span className="ml-3 text-xl items-center">{name}</span>}
+            <button
+              className="inline-flex items-center border-0 py-2 px-4  bg-slate-300  focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0"
+              onClick={logOutButtonClick}
+            >
+              <a href="/login">Log Out</a>
+            </button>
+          </div>
+        ) : (
+          <button className="inline-flex   items-center  border-0 py-2 px-4 focus:outline-none text-black hover:bg-slate-200 rounded text-base mt-4 ml-4 md:mt-0">
+            <a href="/login">Login</a>
+          </button>
+        )}
+>>>>>>> ca2bf14a6517ee48a92aafbdd71230ec7467f42d
       </div>
     </header>
   );

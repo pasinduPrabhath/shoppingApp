@@ -1,10 +1,10 @@
 // import React from 'react'
 
 // const Cart1 = () => {
-  
+
 //   return (
 //       <>
-     
+
 //       <div class="grid grid-cols-4 bg-white">
 //               <div class="col-start-1 col-end-4 bg-white-500">
 //                 <div className="grid grid-cols-7 text-center my-8 mx-16 bg-gray-100">
@@ -15,13 +15,12 @@
 //                   <div className="flex justify-center items-center font-medium text-gray-400 w-full h-12">
 //                   Item
 //                   </div>
-                 
+
 //                   <div className="flex justify-center items-center font-medium text-gray-400 w-full h-12">
 //                    Price
 //                   </div>
 //                 </div>
 
-                
 //                         <>
 //                           <div >
 //                             <div className="grid grid-cols-7 h-36 text-center m-16 mt-0 shadow-md rounded-md">
@@ -54,13 +53,11 @@
 //                             </div>
 //                           </div>
 //                         </>
-                      
-                
-              
+
 //                   <>
 //                     <div className="flex justify-end">
 //                       <button
-                       
+
 //                         className="mr-16 px-5 py-3 bg-orange-500 text-white rounded-md"
 //                       >
 //                         Clear Cart
@@ -78,7 +75,6 @@
 //                   </div>
 //                   <div class="flex-grow border-t border-gray-400"></div>
 
-                
 //                   <div class="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
 //                     <ul class="flex justify-between ">
 //                       <li class="block  text-gray-600 ml-5">Sub-total</li>
@@ -101,7 +97,7 @@
 //                   </div>
 
 //                   <button
-                  
+
 //                     className="flex flex-col p-1 ml-2 w-80 h-12 pl-24 text-white text-center md:flex-row  md:mt-6 md:text-2xl md:font-medium rounded-xl md:bg-orange-500 dark:bg-white shadow-xl"
 //                   >
 //                     Checkout
@@ -113,7 +109,7 @@
 //                     BUY NOW
 //                   </div>
 //                   <div class="flex-grow border-t border-gray-400"></div>
-                  
+
 //                   <div class="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
 //                     <ul class="flex justify-between ">
 //                     <form className="mb-5">
@@ -122,7 +118,7 @@
 //                             <input
 //                               className="mt-1 px-4 py-2 border rounded-lg w-full"
 //                               type="text"
-                              
+
 //                             />
 //                           </div>
 
@@ -131,46 +127,34 @@
 //                             <input
 //                               className="mt-1 px-4 py-2 border rounded-lg w-full"
 //                               type="text"
-                            
+
 //                             />
 //                           </div>
 
 //                           <button
-                  
+
 //                   className="flex flex-col p-1 ml-2 w-80 h-12 pl-24 text-white text-center md:flex-row  md:mt-6 md:text-2xl md:font-medium rounded-xl md:bg-orange-500 dark:bg-white shadow-xl"
 //                 >
 //                  BUY NOW
 //                 </button>
-                         
+
 //                         </form>
 
 //                     </ul>
 //                   </div>
 
-
-                  
-                  
 //                 </div>
 //               </div>
 
-
-              
-
-              
-//             </div>    
+//             </div>
 //       </>
 //   )
 // }
 
 // export default Cart1
 
-
-
-
-
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Cart1 = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -178,16 +162,16 @@ const Cart1 = () => {
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
-        const userId = '22'; // Hardcoded user ID, replace with actual user ID in a real application
+        const userId = localStorage.getItem("userId");
         const response = await axios.post(
-          'https://lapshopapp-f26f1576abb1.herokuapp.com/api/getProductsInCart',
+          "https://lapshopapp-f26f1576abb1.herokuapp.com/api/getProductsInCart",
           {
             id: userId,
           }
         );
         setCartItems(response.data.data);
       } catch (error) {
-        console.error('Error fetching cart items:', error);
+        console.error("Error fetching cart items:", error);
       }
     };
 
@@ -215,7 +199,11 @@ const Cart1 = () => {
             <div key={item.cartId}>
               <div className="grid grid-cols-7 h-36 text-center m-16 mt-0 shadow-md rounded-md">
                 <div className="flex justify-center font-medium items-center w-full col-span-1">
-                  <img src={item.image} className="mr-3 h-28 ml-2" alt={item.title} />
+                  <img
+                    src={item.image}
+                    className="mr-3 h-28 ml-2"
+                    alt={item.title}
+                  />
                 </div>
                 <div className="flex justify-center font-medium items-center w-full col-span-2">
                   <p className="block text-center ">{item.category}</p>
@@ -234,7 +222,7 @@ const Cart1 = () => {
           ))}
 
           <div className="flex justify-end">
-            <button className="mr-16 px-5 py-3 bg-orange-500 text-white rounded-md">
+            <button className="mr-16 px-5 py-3 bg-red-500 text-white rounded-md">
               Clear Cart
             </button>
           </div>
@@ -271,9 +259,7 @@ const Cart1 = () => {
               </ul>
             </div>
 
-            <button
-              className="flex flex-col p-1 ml-2 w-80 h-12 pl-24 text-white text-center md:flex-row  md:mt-6 md:text-2xl md:font-medium rounded-xl md:bg-orange-500 dark:bg-white shadow-xl"
-            >
+            <button className="flex flex-col p-1 ml-2 w-80 h-12 pl-24 text-white text-center md:flex-row  md:mt-6 md:text-2xl md:font-medium rounded-xl md:bg-red-500 dark:bg-white shadow-xl">
               Checkout
             </button>
 
@@ -289,7 +275,9 @@ const Cart1 = () => {
               <ul className="flex justify-between ">
                 <form className="mb-5">
                   <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-700">Address</label>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Address
+                    </label>
                     <input
                       className="mt-1 px-4 py-2 border rounded-lg w-full"
                       type="text"
@@ -297,16 +285,16 @@ const Cart1 = () => {
                   </div>
 
                   <div className="mb-5">
-                    <label className="block text-sm font-medium text-gray-700">Contact number</label>
+                    <label className="block text-sm font-medium text-gray-700">
+                      Contact number
+                    </label>
                     <input
                       className="mt-1 px-4 py-2 border rounded-lg w-full"
                       type="text"
                     />
                   </div>
 
-                  <button
-                    className="flex flex-col p-1 ml-2 w-80 h-12 pl-24 text-white text-center md:flex-row  md:mt-6 md:text-2xl md:font-medium rounded-xl md:bg-orange-500 dark:bg-white shadow-xl"
-                  >
+                  <button className="flex flex-col p-1 ml-2 w-80 h-12 pl-24 text-white text-center md:flex-row  md:mt-6 md:text-2xl md:font-medium rounded-xl md:bg-red-500 dark:bg-white shadow-xl">
                     BUY NOW
                   </button>
                 </form>
@@ -320,4 +308,3 @@ const Cart1 = () => {
 };
 
 export default Cart1;
-

@@ -1,5 +1,6 @@
 const pool = require("../config/database");
 const { sendEmail } = require("./email");
+const jwt = require("jsonwebtoken");
 // const { get } = require('./user.router');
 
 function generateOTP() {
@@ -33,7 +34,7 @@ userRegister: (data, callBack) => {
 getUserByEmail: (email, callBack) => {
     pool.query(
       `select 
-        *
+        userId,userName,email,account_status,password
         from userTable
         where
         email = ?`,
@@ -87,8 +88,6 @@ emailVerification: (email, otp, callBack) => {
         }
     );
 },
-
-
 
 searchByKeyword: (keyword, callback) => {
     pool.query(
