@@ -1,4 +1,5 @@
 const pool = require("../config/database");
+const jwt = require("jsonwebtoken");
 const { sendEmail } = require("./email");
 // const { get } = require('./user.router');
 
@@ -10,6 +11,7 @@ function generateOTP() {
     }
     return otp;
   }
+
 module.exports = {
 userRegister: (data, callBack) => {
     const otp = generateOTP();

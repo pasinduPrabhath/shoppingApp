@@ -69,10 +69,13 @@ module.exports = {
       const result = bcrypt.compareSync(password, user.password);
       if (result) {
         if (user.account_status === "verified") {
+            const token = jwt.sign({ userId: user.id }, config.jwtSecret, {
+                expiresIn: "1d",
+              });
           user.password = undefined;
           return res.json({
             success: 1,
-            data: user,
+            data: user,token,
           });
         } else {
           return res.json({
