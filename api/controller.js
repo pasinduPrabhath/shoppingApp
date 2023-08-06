@@ -154,20 +154,29 @@ module.exports = {
     });
   },
 
-addToCart: (req, res) => {
+
+  addToCart: (req, res) => {
     const data = req.body;
-    addToCart(data, (err, results) => {
+  
+    jwt.verify(req.token, process.env.JWT_SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+  
+      // Add the item to the user's cart
+      addToCart({ userId: decoded.userId, productId: data.productId }, (err, results) => {
         if (err) {
-            console.log(err);
-            return;
+          console.log(err);
+          return res.status(500).json({ error: 'Internal server error' });
         }
+  
         return res.json({
-            success: 1,
-            data: results,
+          success: 1,
+          data: results,
         });
-    }
-    );
-},
+      });
+    });
+  },
 
 removeFromCart: (req, res) => {
     const data = req.body;
