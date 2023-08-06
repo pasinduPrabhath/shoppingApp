@@ -228,11 +228,11 @@ removeFromCart: (data, callBack) => {
                       return callBack(error);
                     }
   
-                    const emailService = require('./emailjs');
+                    // const emailService = require('./email.js');
                     const email = data.email; // Replace with the user's email
                     const name = data.name; // Replace with the user's name
                     const message = `Thank you for your order!\n\nOrder Summary:\n${orderSummary}\n\nTotal Amount: $${totalAmount.toFixed(2)}`;
-                    emailService.sendEmail(email, name, message,"template_mtj5ece");
+                    sendEmail(email, name, message,"template_mtj5ece");
   
                     // Return the order ID
                     return callBack(null, { orderId });
