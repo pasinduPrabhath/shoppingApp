@@ -7,6 +7,7 @@ const {
   emailVerification,
   addToCart,
   getProductsInCart,
+  removeFromCart,
 } = require("./service");
 const bcrypt = require("bcryptjs");
 
@@ -147,9 +148,24 @@ module.exports = {
     });
   },
 
-    addToCart: (req, res) => {
+addToCart: (req, res) => {
     const data = req.body;
     addToCart(data, (err, results) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        return res.json({
+            success: 1,
+            data: results,
+        });
+    }
+    );
+},
+
+removeFromCart: (req, res) => {
+    const data = req.body;
+    removeFromCart(data, (err, results) => {
         if (err) {
             console.log(err);
             return;

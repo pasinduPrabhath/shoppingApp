@@ -11,7 +11,7 @@ function generateOTP() {
     return otp;
   }
 module.exports = {
-  userRegister: (data, callBack) => {
+userRegister: (data, callBack) => {
     const otp = generateOTP();
     pool.query(
       `insert into userTable(userName,email,password,otp,account_status) values(?,?,?,?,?)`,
@@ -30,7 +30,7 @@ module.exports = {
       }
     );
   },
-  getUserByEmail: (email, callBack) => {
+getUserByEmail: (email, callBack) => {
     pool.query(
       `select 
         *
@@ -46,7 +46,7 @@ module.exports = {
       }
     );
   },
-  getProducts: (id, callBack) => {
+getProducts: (id, callBack) => {
     let query = `SELECT * FROM product_table`;
     if (id) {
       query += ` WHERE product_id = ${id}`;
@@ -58,7 +58,7 @@ module.exports = {
       return callBack(null, results);
     });
   },
-  emailVerification: (email, otp, callBack) => {
+emailVerification: (email, otp, callBack) => {
     pool.query(
         `select
         *
@@ -90,7 +90,7 @@ module.exports = {
 
 
 
-  searchByKeyword: (keyword, callback) => {
+searchByKeyword: (keyword, callback) => {
     pool.query(
       `SELECT title,product_id FROM product_table WHERE title LIKE '%${keyword}%'`,
       [],
@@ -103,7 +103,7 @@ module.exports = {
     );
   },
 
-  addToCart: (data, callBack) => {
+addToCart: (data, callBack) => {
     pool.query(
       `select * from product_table where product_id = ?`,
       [data.product_id],
@@ -127,6 +127,31 @@ module.exports = {
       }
     );
   },
+
+removeFromCart: (data, callBack) => {
+    pool.query(
+        `select * from cart_table where cartId = ? AND userId = ?`,
+        [data.cartId, data.userId],
+        (error, results, fields) => {
+            if (error) {
+                return callBack(error);
+            }
+            if (results.length == 0) {
+                return callBack(null, { error: "Invalid cart ID" });
+            }
+            pool.query(
+                `delete from cart_table where cartId = ? AND userId = ?`,
+                [data.cartId],
+                (error, results, fields) => {
+                    if (error) {
+                        return callBack(error);
+                    }
+                    return callBack(null, results);
+                }
+            );
+        }
+    );
+},
 
   getProductsInCart: (userId, callBack) => {
     pool.query(

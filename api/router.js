@@ -7,6 +7,7 @@ const {
   emailVerification,
   addToCart,
   getProductsInCart,
+  removeFromCart,
 } = require("./controller");
 
 router.post("/register", userRegister);
@@ -16,4 +17,5 @@ router.get("/searchByTitle/:keyword", searchByKeyword);
 router.post("/emailVerification", emailVerification);
 router.post("/addToCart", addToCart);
 router.post("/getProductsInCart", getProductsInCart);
+router.post("/removeFromCart", removeFromCart);
 module.exports = router;
