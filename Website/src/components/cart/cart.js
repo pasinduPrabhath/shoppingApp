@@ -49,6 +49,14 @@ const Cart1 = () => {
     fetchCartItems();
   }, []);
 
+  const handleClearCart = () => {
+    // Clear cart items and reset the calculations
+    setCartItems([]);
+    setSubtotal(0);
+    setDiscount(0);
+    setTotal(0);
+  };
+
   return (
     <>
       <div className="grid grid-cols-4 bg-white">
@@ -93,9 +101,11 @@ const Cart1 = () => {
           ))}
 
           <div className="flex justify-end">
-            <button className="mr-16 px-5 py-3 bg-red-500 text-white rounded-md">
-              Clear Cart
-            </button>
+          <button
+          onClick={handleClearCart}
+          className="mr-16 px-5 py-3 bg-red-500 text-white rounded-md"
+        ></button>
+        
           </div>
         </div>
 
@@ -120,8 +130,8 @@ const Cart1 = () => {
 
             <div className="p-3 mr-4 ml-2 md:flex-row md:space-x-8 md:mt-6 md:text-sm md:font-medium md:bg-white dark:bg-gray-800 md:dark:bg-gray-200 dark:border-gray-500">
               <ul className="flex justify-between ">
-                <li className="block  text-gray-600 ml-5">Discount</li>
-                <li className="block  text-gray-600 mr-5">{discount}LKR(5%)</li>
+                <li className="block  text-gray-600 ml-5">Discount(5%)</li>
+                <li className="block  text-gray-600 mr-5">{discount}LKR</li>
               </ul>
             </div>
 
