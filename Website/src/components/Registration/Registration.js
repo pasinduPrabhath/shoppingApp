@@ -43,7 +43,7 @@ const Registration = () => {
         {
           email: emailValue,
           password: confirmPasswordValue,
-          username: nameValue,
+          userName: nameValue,
         }
       );
       if (response.data.success === 1) {
