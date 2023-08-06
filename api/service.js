@@ -191,7 +191,7 @@ removeFromCart: (data, callBack) => {
   
         // Calculate the total amount of the order
         const totalAmount = results.reduce(
-          (total, item) => total + item.price * item.quantity,
+          (total, item) => total + item.price,
           0
         );
   
