@@ -183,22 +183,28 @@ removeFromCart: (req, res) => {
 },
 
 getProductsInCart: (req, res) => {
-    const {userId} = req.body;
-    jwt.verify(req.token,process.env.JWT_SECRET,(err, authData) => {
-        if (err) {
-          res.sendStatus(403);
-        } else {
-          getProductsInCart(userId, (err, results) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            return res.json({
-              success: 1,
-              data: results,
-            });
+    const { userId } = req.body;
+    jwt.verify(req.token, process.env.JWT_KEY, (err, authData) => {
+      if (err) {
+        // If the token is not valid, return an error response
+        return res.status(403).json({
+          success: 0,
+          message: "Invalid token",
+        });
+      } else {
+        // If the token is valid, proceed with fetching products in the cart
+        getProductsInCart(userId, (err, results) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          return res.json({
+            success: 1,
+            data: results,
           });
-        }
-      });
-}
+        });
+      }
+    });
+  },
+  
 };
